@@ -60,6 +60,8 @@ class Alg_WC_CPP_Core {
 			add_filter( $price_filter,                                         array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 			add_filter( 'woocommerce_product_variation_get_price',             array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 
+			add_filter( 'booking_form_calculated_booking_cost', array( $this, 'change_booking_price' ), 100, 3 );
+
 			// Grouped
 			if ( ! $this->convert_in_shop ) {
 				add_filter( 'woocommerce_grouped_price_html',                  array( $this, 'grouped_price_html' ), PHP_INT_MAX, 2 );
@@ -213,7 +215,10 @@ class Alg_WC_CPP_Core {
 						is_numeric( $from ) ? wc_price( $from, array( 'currency' => $product_currency ) ) : $from,
 						is_numeric( $to )   ? wc_price( $to,   array( 'currency' => $product_currency ) ) : $to );
 				}
-			} else {
+			} else if ( $product->is_type( 'booking' ) ) { 
+				$price_raw   = get_post_meta( alg_wc_cpp_get_product_id( $product ), '_wc_booking_cost', true );
+				$price       = wc_price( $price_raw, array( 'currency' => $product_currency ) );
+ 			} else {		
 				$price_raw   = get_post_meta( alg_wc_cpp_get_product_id( $product ), '_price', true );
 				$price       = wc_price( $price_raw, array( 'currency' => $product_currency ) );
 			}
@@ -542,6 +547,26 @@ class Alg_WC_CPP_Core {
 				$this->saved_prices['shop'][ $product_id ] = $return_price;
 			}
 			return $return_price;
+		}
+		return $price;
+	}
+
+	/**
+	 * Change the Booking cost for the number of persons displayed on the Booking product page from WooCommerce Bookings plugin. 
+	 * 
+	 * change_booking_price.
+	 * 
+	 * @version 1.4.5
+	 * @since 1.4.5
+	 */
+	function change_booking_price( $price, $product, $posted ) {
+		if ( $this->convert_in_shop && wp_doing_ajax() ) {
+			if( isset( $product->product ) ) {
+				$exchange_rate = alg_wc_cpp_get_currency_exchange_rate( $this->get_product_currency( alg_wc_cpp_get_product_id_or_variation_parent_id( $product->product ) ) );
+			} else {
+				$exchange_rate = 1;
+			}
+			$price  = $price * $exchange_rate;
 		}
 		return $price;
 	}
