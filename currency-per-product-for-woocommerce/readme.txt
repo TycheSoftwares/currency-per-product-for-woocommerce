@@ -2,8 +2,8 @@
 Contributors: tychesoftwares
 Tags: woocommerce, woo commerce, currency per product, currency, multicurrency
 Requires at least: 4.4
-Tested up to: 5.0
-Stable tag: 1.4.4
+Tested up to: 5.1.1
+Stable tag: 1.4.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,6 +62,14 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+= 1.4.5 - 25/03/2019 =
+* Fix - Prices for the Bookable products from WooCommerce Bookings plugin were not converted to the default currency when 'Convert to Shop default currency (and set cart and checkout behavior separately)' option is selected for Shop Behaviour setting. This is fixed now. 
+* Fix - The prices for the selected currency for the bookable products were shown as 0 on the Shop page when 'Add original price in shop' option is checked. This is fixed now. 
+* Fix - A fatal error was shown on the Shop page for Variable products when visited as Wholesale customer added from Wholesale Customers For Woo plugin. This is fixed now. 
+
+= 1.4.4 - 16/11/2018 =
+* Version Changed. 
 
 = 1.4.3 - 31/10/2018 =
 * Compatibility with WooCommerce 3.5.0 tested.
