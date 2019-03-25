@@ -536,7 +536,8 @@ class Alg_WC_CPP_Core {
 				return $this->saved_prices['shop'][ $product_id ];
 			}
 			$exchange_rate = alg_wc_cpp_get_currency_exchange_rate( $this->get_product_currency( alg_wc_cpp_get_product_id_or_variation_parent_id( $_product ) ) );
-			$return_price  = $price * $exchange_rate;
+
+			$return_price  = (float)$price * $exchange_rate;
 			if ( $do_save_prices ) {
 				$this->saved_prices['shop'][ $product_id ] = $return_price;
 			}
