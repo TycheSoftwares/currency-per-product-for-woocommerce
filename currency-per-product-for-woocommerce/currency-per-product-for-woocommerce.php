@@ -3,13 +3,13 @@
 Plugin Name: Currency per Product for WooCommerce
 Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/
 Description: Set and display prices for WooCommerce products in different currencies.
-Version: 1.4.4
+Version: 1.4.5
 Author: Tyche Softwares
 Author URI: https://www.tychesoftwares.com/
 Text Domain: currency-per-product-for-woocommerce
 Domain Path: /langs
 Copyright: © 2018 Tyche Softwares
-WC tested up to: 3.5.0
+WC tested up to: 3.5.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -53,7 +53,7 @@ final class Alg_WC_CPP {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.4.3';
+	public $version = '1.4.5';
 
 	/**
 	 * @var   Alg_WC_CPP The single instance of the class
