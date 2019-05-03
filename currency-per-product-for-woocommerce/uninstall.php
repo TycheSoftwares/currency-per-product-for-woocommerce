@@ -15,6 +15,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit;
 }
 
+if( file_exists( WP_PLUGIN_DIR . '/currency-per-product-for-woocommerce-pro/currency-per-product-for-woocommerce-pro.php' ) ) {
+	return;
+}
+
 //General Settings
 delete_option( 'alg_wc_cpp_enabled' );
 delete_option( 'alg_wc_cpp_currency_reports_enabled ' );
