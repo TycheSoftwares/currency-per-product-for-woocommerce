@@ -658,6 +658,9 @@ class Alg_WC_CPP_Core {
 	 * @since   1.0.0
 	 */
 	function get_cart_checkout_currency() {
+		if( empty( WC()->cart->get_cart_contents() ) ) {
+			return false;
+		}
 		if ( ! isset( WC()->cart ) || WC()->cart->is_empty() ) {
 			return false;
 		}
@@ -717,6 +720,8 @@ class Alg_WC_CPP_Core {
 				return $_currency;
 			}
 		} elseif ( false != ( $_currency = $this->get_current_product_id_and_currency() ) ) {
+			return $_currency;
+		} else if ( wp_doing_ajax() && false != ( $_currency = $this->get_cart_checkout_currency() ) ) {
 			return $_currency;
 		}
 		return $currency;
