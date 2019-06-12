@@ -123,14 +123,6 @@ class Alg_WC_CPP_Settings_Currencies extends Alg_WC_CPP_Settings_Section {
 		$total_number = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
 		for ( $i = 1; $i <= $total_number; $i++ ) {
 			$currency_to = get_option( 'alg_wc_cpp_currency_' . $i, $currency_from );
-			$custom_attributes = array(
-				'currency_from'        => $currency_from,
-				'currency_to'          => $currency_to,
-				'multiply_by_field_id' => 'alg_wc_cpp_exchange_rate_' . $i,
-			);
-			if ( $currency_from == $currency_to ) {
-				$custom_attributes['disabled'] = 'disabled';
-			}
 			$currencies_settings = array_merge( $currencies_settings, array(
 				array(
 					'title'    => __( 'Currency', 'currency-per-product-for-woocommerce' ) . ' #' . $i . ' [' . $currency_to . ']',
