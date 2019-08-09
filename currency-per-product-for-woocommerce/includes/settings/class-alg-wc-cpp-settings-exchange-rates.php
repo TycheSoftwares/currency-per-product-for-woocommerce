@@ -78,7 +78,7 @@ class Alg_WC_CPP_Settings_Exchange_Rates extends Alg_WC_CPP_Settings_Section {
 				'desc'     => $update_rates_button . apply_filters( 'alg_wc_cpp', '<p>' . sprintf(
 					__( 'To enable automatic exchange rates, please get <a target="_blank" href="%s">Currency per Product for WooCommerce Pro</a> plugin.',
 						'currency-per-product-for-woocommerce' ),
-					'https://wpfactory.com/item/currency-per-product-for-woocommerce/' ) . '</p>', 'settings' ) . $update_rates_cron_time,
+					'https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=link&utm_campaign=CurrencePerProductLite' ) . '</p>', 'settings' ) . $update_rates_cron_time,
 				'custom_attributes' => apply_filters( 'alg_wc_cpp', array( 'disabled' => 'disabled' ), 'settings' ),
 			),
 			array(
