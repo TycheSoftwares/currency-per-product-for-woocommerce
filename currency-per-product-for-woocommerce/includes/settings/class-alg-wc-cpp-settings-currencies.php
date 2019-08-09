@@ -47,7 +47,7 @@ class Alg_WC_CPP_Settings_Currencies extends Alg_WC_CPP_Settings_Section {
 				'type'     => 'number',
 				'desc'     => apply_filters( 'alg_wc_cpp', '<p>' . sprintf(
 					'To add more than one <strong>additional</strong> currency, please get <a target="_blank" href="%s">Currency per Product for WooCommerce Pro</a> plugin.',
-					'https://wpfactory.com/item/currency-per-product-for-woocommerce/' ) . '</p>', 'settings_button' ),
+					'https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=link&utm_campaign=CurrencePerProductLite' ) . '</p>', 'settings_button' ),
 				'custom_attributes' => apply_filters( 'alg_wc_cpp', array( 'readonly' => 'readonly' ), 'settings_array' ),
 			),
 			array(

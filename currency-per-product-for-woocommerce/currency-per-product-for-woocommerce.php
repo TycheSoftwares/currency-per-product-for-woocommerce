@@ -130,7 +130,7 @@ final class Alg_WC_CPP {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_cpp' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 		if ( 'currency-per-product-for-woocommerce.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/">' .
+			$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=unlockall&utm_campaign=CurrencePerProductLite">' .
 				__( 'Unlock All', 'currency-per-product-for-woocommerce' ) . '</a>';
 		}
 		return array_merge( $custom_links, $links );
