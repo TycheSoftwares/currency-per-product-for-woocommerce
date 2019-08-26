@@ -1,36 +1,42 @@
 <?php
-/*
-Plugin Name: Currency per Product for WooCommerce
-Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/
-Description: Set and display prices for WooCommerce products in different currencies.
-Version: 1.4.5
-Author: Tyche Softwares
-Author URI: https://www.tychesoftwares.com/
-Text Domain: currency-per-product-for-woocommerce
-Domain Path: /langs
-Copyright: © 2018 Tyche Softwares
-WC tested up to: 3.5.7
-License: GNU General Public License v3.0
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
-*/
+/**
+ * Set diferent currencies for different WooCommerce products.
+ *
+ * Plugin Name: Currency per Product for WooCommerce
+ * Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/
+ * Description: Set and display prices for WooCommerce products in different currencies.
+ * Version: 1.4.5
+ * Author: Tyche Softwares
+ * Author URI: https://www.tychesoftwares.com/
+ * Text Domain: currency-per-product-for-woocommerce
+ * Domain Path: /langs
+ * Copyright: ï¿½ 2018 Tyche Softwares
+ * WC tested up to: 3.5.7
+ * License: GNU General Public License v3.0
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @package currency-per-product-for-woocommerce
+ */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-// Check if WooCommerce is active
-$plugin = 'woocommerce/woocommerce.php';
+// Check if WooCommerce is active.
+$plugin_woo = 'woocommerce/woocommerce.php';
 if (
-	! in_array( $plugin, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) &&
-	! ( is_multisite() && array_key_exists( $plugin, get_site_option( 'active_sitewide_plugins', array() ) ) )
+	! in_array( $plugin_woo, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ), true ) &&
+	! ( is_multisite() && array_key_exists( $plugin_woo, get_site_option( 'active_sitewide_plugins', array() ) ) )
 ) {
 	return;
 }
 
 if ( 'currency-per-product-for-woocommerce.php' === basename( __FILE__ ) ) {
-	// Check if Pro is active, if so then return
-	$plugin = 'currency-per-product-for-woocommerce-pro/currency-per-product-for-woocommerce-pro.php';
+	// Check if Pro is active, if so then return.
+	$plugin_cpp = 'currency-per-product-for-woocommerce-pro/currency-per-product-for-woocommerce-pro.php';
 	if (
-		in_array( $plugin, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) ||
-		( is_multisite() && array_key_exists( $plugin, get_site_option( 'active_sitewide_plugins', array() ) ) )
+		in_array( $plugin_cpp, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ), true ) ||
+		( is_multisite() && array_key_exists( $plugin_cpp, get_site_option( 'active_sitewide_plugins', array() ) ) )
 	) {
 		return;
 	}
@@ -38,172 +44,176 @@ if ( 'currency-per-product-for-woocommerce.php' === basename( __FILE__ ) ) {
 
 if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 
-/**
- * Main Alg_WC_CPP Class
- *
- * @class   Alg_WC_CPP
- * @version 1.4.1
- * @since   1.0.0
- */
-final class Alg_WC_CPP {
-
 	/**
-	 * Plugin version.
+	 * Main Alg_WC_CPP Class
 	 *
-	 * @var   string
-	 * @since 1.0.0
-	 */
-	public $version = '1.4.5';
-
-	/**
-	 * @var   Alg_WC_CPP The single instance of the class
-	 * @since 1.0.0
-	 */
-	protected static $_instance = null;
-
-	/**
-	 * Main Alg_WC_CPP Instance
-	 *
-	 * Ensures only one instance of Alg_WC_CPP is loaded or can be loaded.
-	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
-	 * @static
-	 * @return  Alg_WC_CPP - Main instance
-	 */
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
-
-	/**
-	 * Alg_WC_CPP Constructor.
-	 *
+	 * @class   Alg_WC_CPP
 	 * @version 1.4.1
 	 * @since   1.0.0
-	 * @access  public
 	 */
-	function __construct() {
+	final class Alg_WC_CPP {
 
-		// Set up localisation
-		load_plugin_textdomain( 'currency-per-product-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+		/**
+		 * Plugin version.
+		 *
+		 * @var   string
+		 * @since 1.0.0
+		 */
+		public $version = '1.4.5';
 
-		// Constants
-		if( ! defined( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0' ) ) {
-			define( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0', version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) );
-		}
+		/**
+		 * Single instance of the class.
+		 *
+		 * @var   Alg_WC_CPP The single instance of the class
+		 * @since 1.0.0
+		 */
+		protected static $instance = null;
 
-		// Include required files
-		$this->includes();
-
-		// Admin
-		if ( is_admin() ) {
-			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
-			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-			// Settings
-			require_once( 'includes/settings/class-alg-wc-cpp-settings-section.php' );
-			$this->settings = array();
-			$this->settings['general']          = require_once( 'includes/settings/class-alg-wc-cpp-settings-general.php' );
-			$this->settings['behaviour']        = require_once( 'includes/settings/class-alg-wc-cpp-settings-behaviour.php' );
-			$this->settings['currencies']       = require_once( 'includes/settings/class-alg-wc-cpp-settings-currencies.php' );
-			$this->settings['exchange-rates']   = require_once( 'includes/settings/class-alg-wc-cpp-settings-exchange-rates.php' );
-			$this->settings['advanced']         = require_once( 'includes/settings/class-alg-wc-cpp-settings-advanced.php' );
-			// Version updated
-			if ( get_option( 'alg_wc_cpp_version', '' ) !== $this->version ) {
-				add_action( 'admin_init', array( $this, 'version_updated' ) );
+		/**
+		 * Main Alg_WC_CPP Instance
+		 *
+		 * Ensures only one instance of Alg_WC_CPP is loaded or can be loaded.
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @static
+		 * @return  Alg_WC_CPP - Main instance
+		 */
+		public static function instance() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
+			return self::$instance;
 		}
 
-	}
+		/**
+		 * Alg_WC_CPP Constructor.
+		 *
+		 * @version 1.4.1
+		 * @since   1.0.0
+		 * @access  public
+		 */
+		public function __construct() {
 
-	/**
-	 * Show action links on the plugin screen.
-	 *
-	 * @version 1.2.1
-	 * @since   1.0.0
-	 * @param   mixed $links
-	 * @return  array
-	 */
-	function action_links( $links ) {
-		$custom_links = array();
-		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_cpp' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
-		if ( 'currency-per-product-for-woocommerce.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=unlockall&utm_campaign=CurrencePerProductLite">' .
-				__( 'Unlock All', 'currency-per-product-for-woocommerce' ) . '</a>';
-		}
-		return array_merge( $custom_links, $links );
-	}
+			// Set up localisation.
+			load_plugin_textdomain( 'currency-per-product-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 
-	/**
-	 * Include required core files used in admin and on the frontend.
-	 *
-	 * @version 1.4.1
-	 * @since   1.0.0
-	 */
-	function includes() {
-		// Functions
-		require_once( 'includes/functions/alg-wc-cpp-functions.php' );
-		require_once( 'includes/functions/alg-wc-cpp-exchange-rates-functions.php' );
-		// Core
-		$this->core = require_once( 'includes/class-alg-wc-cpp-core.php' );
-	}
+			// Constants.
+			if ( ! defined( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0' ) ) {
+				define( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0', version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) );
+			}
 
-	/**
-	 * version_updated.
-	 *
-	 * @version 1.4.0
-	 * @since   1.4.0
-	 */
-	function version_updated() {
-		// Adding (new) options
-		foreach ( $this->settings as $section ) {
-			foreach ( $section->get_settings() as $value ) {
-				if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
-					$autoload = isset( $value['autoload'] ) ? ( bool ) $value['autoload'] : true;
-					add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
+			// Include required files.
+			$this->includes();
+
+			// Admin.
+			if ( is_admin() ) {
+				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
+				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+				// Settings.
+				require_once 'includes/settings/class-alg-wc-cpp-settings-section.php';
+				$this->settings                   = array();
+				$this->settings['general']        = require_once 'includes/settings/class-alg-wc-cpp-settings-general.php';
+				$this->settings['behaviour']      = require_once 'includes/settings/class-alg-wc-cpp-settings-behaviour.php';
+				$this->settings['currencies']     = require_once 'includes/settings/class-alg-wc-cpp-settings-currencies.php';
+				$this->settings['exchange-rates'] = require_once 'includes/settings/class-alg-wc-cpp-settings-exchange-rates.php';
+				$this->settings['advanced']       = require_once 'includes/settings/class-alg-wc-cpp-settings-advanced.php';
+				// Version updated.
+				if ( get_option( 'alg_wc_cpp_version', '' ) !== $this->version ) {
+					add_action( 'admin_init', array( $this, 'version_updated' ) );
 				}
 			}
+
 		}
-		// Version updated
-		update_option( 'alg_wc_cpp_version', $this->version );
-	}
 
-	/**
-	 * Add Currency per Product settings tab to WooCommerce settings.
-	 *
-	 * @version 1.4.0
-	 * @since   1.0.0
-	 */
-	function add_woocommerce_settings_tab( $settings ) {
-		$settings[] = require_once( 'includes/settings/class-alg-wc-settings-cpp.php' );
-		return $settings;
-	}
+		/**
+		 * Show action links on the plugin screen.
+		 *
+		 * @version 1.2.1
+		 * @since   1.0.0
+		 * @param   mixed $links Links array.
+		 * @return  array
+		 */
+		public function action_links( $links ) {
+			$custom_links   = array();
+			$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_cpp' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
+			if ( 'currency-per-product-for-woocommerce.php' === basename( __FILE__ ) ) {
+				$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=unlockall&utm_campaign=CurrencePerProductLite">' .
+				__( 'Unlock All', 'currency-per-product-for-woocommerce' ) . '</a>';
+			}
+			return array_merge( $custom_links, $links );
+		}
 
-	/**
-	 * Get the plugin url.
-	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
-	 * @return  string
-	 */
-	function plugin_url() {
-		return untrailingslashit( plugin_dir_url( __FILE__ ) );
-	}
+		/**
+		 * Include required core files used in admin and on the frontend.
+		 *
+		 * @version 1.4.1
+		 * @since   1.0.0
+		 */
+		public function includes() {
+			// Functions.
+			require_once 'includes/functions/alg-wc-cpp-functions.php';
+			require_once 'includes/functions/alg-wc-cpp-exchange-rates-functions.php';
+			// Core.
+			$this->core = require_once 'includes/class-alg-wc-cpp-core.php';
+		}
 
-	/**
-	 * Get the plugin path.
-	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
-	 * @return  string
-	 */
-	function plugin_path() {
-		return untrailingslashit( plugin_dir_path( __FILE__ ) );
-	}
+		/**
+		 * Runs when plugin is updated.
+		 *
+		 * @version 1.4.0
+		 * @since   1.4.0
+		 */
+		public function version_updated() {
+			// Adding (new) options.
+			foreach ( $this->settings as $section ) {
+				foreach ( $section->get_settings() as $value ) {
+					if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
+						$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
+					}
+				}
+			}
+			// Version updated.
+			update_option( 'alg_wc_cpp_version', $this->version );
+		}
 
-}
+		/**
+		 * Add Currency per Product settings tab to WooCommerce settings.
+		 *
+		 * @version 1.4.0
+		 * @since   1.0.0
+		 *
+		 * @param array $settings Settings array.
+		 */
+		public function add_woocommerce_settings_tab( $settings ) {
+			$settings[] = require_once 'includes/settings/class-alg-wc-settings-cpp.php';
+			return $settings;
+		}
+
+		/**
+		 * Get the plugin url.
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return  string
+		 */
+		public function plugin_url() {
+			return untrailingslashit( plugin_dir_url( __FILE__ ) );
+		}
+
+		/**
+		 * Get the plugin path.
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return  string
+		 */
+		public function plugin_path() {
+			return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		}
+
+	}
 
 endif;
 
