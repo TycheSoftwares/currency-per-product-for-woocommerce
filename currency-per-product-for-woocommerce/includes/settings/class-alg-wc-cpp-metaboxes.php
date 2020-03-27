@@ -205,7 +205,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Metaboxes' ) ) :
 					'options' => $currency_codes,
 				),
 			);
-			return $options;
+			return apply_filters( 'alg_wc_cpp', $options, 'meta_box_options' );
 		}
 
 	}
