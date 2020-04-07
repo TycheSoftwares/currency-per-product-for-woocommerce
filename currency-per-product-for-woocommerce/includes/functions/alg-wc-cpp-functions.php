@@ -117,6 +117,30 @@ if ( ! function_exists( 'alg_wc_cpp_get_terms' ) ) {
 	}
 }
 
+if ( ! function_exists( 'alg_wc_cpp_get_product_terms' ) ) {
+	/**
+	 * alg_wc_cpp_get_product_terms.
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 */
+	function alg_wc_cpp_get_product_terms( $product_id, $taxonomy ) {
+		if ( ! $product_id ) {
+			return;
+		}
+
+		$_terms = get_the_terms( $product_id, $taxonomy );
+
+		$_terms_id = array();
+		if ( ! empty( $_terms ) && ! is_wp_error( $_terms ) ){
+			foreach ( $_terms as $_term ) {
+				array_push( $_terms_id, $_term->term_id );
+			}
+		}
+		return $_terms_id;
+	}
+}
+
 if ( ! function_exists( 'alg_wc_cpp_get_user_roles_options' ) ) {
 	/**
 	 * Get user role options.
