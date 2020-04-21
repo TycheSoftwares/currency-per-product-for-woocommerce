@@ -485,15 +485,14 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 			$do_check_by_product_cats = ( 'yes' === get_option( 'alg_wc_cpp_by_product_cats_enabled', 'no' ) );
 			$do_check_by_product_tags = ( 'yes' === get_option( 'alg_wc_cpp_by_product_tags_enabled', 'no' ) );
 			if ( $do_check_by_users || $do_check_by_user_roles || $do_check_by_product_cats || $do_check_by_product_tags ) {
-				$product = wc_get_product( $product_id );
 				if ( $do_check_by_users || $do_check_by_user_roles ) {
 					$product_author_id = get_post_field( 'post_author', $product_id );
 				}
 				if ( $do_check_by_product_cats ) {
-					$_product_cats = $product->get_category_ids();
+						$_product_cats = alg_wc_cpp_get_product_terms( $product_id, 'product_cat' );
 				}
 				if ( $do_check_by_product_tags ) {
-					$_product_tags = $product->get_tag_ids();
+						$_product_tags= alg_wc_cpp_get_product_terms( $product_id, 'product_tag' );
 				}
 				$total_number = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
 				for ( $i = 1; $i <= $total_number; $i++ ) {
