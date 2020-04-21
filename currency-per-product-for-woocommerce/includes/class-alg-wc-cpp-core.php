@@ -123,11 +123,106 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 					}
 					// "Filter Products by Price".
 					if ( 'yes' === get_option( 'alg_wc_cpp_filter_by_converted_price', 'no' ) ) {
-						add_filter( 'woocommerce_price_filter_meta_keys', array( $this, 'price_filter_meta_keys' ), PHP_INT_MAX, 1 );
+						add_filter( 'woocommerce_product_query', array( $this, 'alg_wc_cpp_products_by_price_filter' ), PHP_INT_MAX, 3 );
 						add_filter( 'woocommerce_product_query_meta_query', array( $this, 'price_filter_meta_query' ), PHP_INT_MAX, 2 );
+						add_filter( 'woocommerce_price_filter_widget_min_amount', array( $this, 'alg_wc_cpp_min_price' ), PHP_INT_MAX );
+						add_filter( 'woocommerce_price_filter_widget_max_amount', array( $this, 'alg_wc_cpp_max_price' ), PHP_INT_MAX );
+						add_filter( 'woocommerce_price_filter_widget_step', array( $this, 'alg_wc_cpp_steps' ), PHP_INT_MAX );
 					}
 				}
 			}
+		}
+		/**
+		 * Function alg_wc_cpp_products_by_price_filter
+		 *
+		 * @param array $query Main Query.
+		 */
+		public function alg_wc_cpp_products_by_price_filter( $query ) {
+			if ( $query->is_main_query() && isset( $_GET['max_price'] ) && isset( $_GET['min_price'] ) ) {
+				$product_ids = wc_get_products(
+					array(
+						'return' => 'ids',
+						'limit'  => -1,
+					)
+				);
+				$new_ids = array();
+				foreach ( $product_ids as $product_id ) {
+					$product = wc_get_product( $product_id );
+					$price   = $product->get_price();
+					if ( $price >= $_GET['min_price'] && $price <= $_GET['max_price'] ) {
+						$new_ids[] = $product_id;
+					}
+				}
+				$query->set( 'post__in', (array) $new_ids );
+			}
+		}
+		/**
+		 * Function alg_wc_cpp_steps
+		 *
+		 * @param int $steps Steps.
+		 */
+		public function alg_wc_cpp_steps( $steps ) {
+			return $steps;
+		}
+		/**
+		 * Function alg_wc_cpp_min_price
+		 *
+		 * @param int $steps Steps.
+		 */
+		public function alg_wc_cpp_min_price( $steps ) {
+			$product_ids = wc_get_products(
+				array(
+					'return' => 'ids',
+					'limit'  => -1,
+				)
+			);
+			$min         = array();
+			foreach ( $product_ids as $product_id ) {
+				$product = wc_get_product( $product_id );
+				if ( $product->is_type( 'variable' ) ) {
+					$price = $product->get_variation_price();
+				} else {
+					$price = $product->get_price();
+				}
+				if ( '' !== $price ) {
+					$min[] = $price;
+				}
+			}
+
+			$min_price = min( $min );
+			$steps     = $this->alg_wc_cpp_steps( $steps );
+
+			return ( floor( $min_price / $steps ) * $steps );
+		}
+		/**
+		 * Function alg_wc_cpp_max_price
+		 *
+		 * @param int $steps Steps.
+		 */
+		public function alg_wc_cpp_max_price( $steps ) {
+			$product_ids = wc_get_products(
+				array(
+					'return' => 'ids',
+					'limit'  => -1,
+				)
+			);
+			$max         = array();
+			foreach ( $product_ids as $product_id ) {
+				$product = wc_get_product( $product_id );
+				if ( $product->is_type( 'variable' ) ) {
+					$price = $product->get_variation_price( 'max' );
+				} else {
+					$price = $product->get_price();
+				}
+				if ( '' !== $price ) {
+					$max[] = $price;
+				}
+			}
+
+			$max_price = max( $max );
+			$steps     = $this->alg_wc_cpp_steps( $steps );
+
+			return ( ceil( $max_price / $steps ) * $steps );
 		}
 
 		/**
@@ -157,18 +252,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 				$meta_query['price_filter']['key'] = '_alg_wc_cpp_converted_price';
 			}
 			return $meta_query;
-		}
-
-		/**
-		 * Price filter meta keys.
-		 *
-		 * @version 1.4.0
-		 * @since   1.4.0
-		 *
-		 * @param array $keys Keys array.
-		 */
-		public function price_filter_meta_keys( $keys ) {
-			return array( '_alg_wc_cpp_converted_price' );
 		}
 
 		/**
