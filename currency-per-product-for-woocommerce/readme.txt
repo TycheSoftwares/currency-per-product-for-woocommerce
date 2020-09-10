@@ -108,6 +108,10 @@ There is a number of scenarios that can be implemented with this plugin:
 
 == Changelog ==
 
+= 1.4.7 - 20/03/2020 =
+* Updated compatibility with WordPress 5.5
+* Updated compatibility with WooCommerce 4.5
+
 = 1.4.6 - 20/03/2020 =
 * Update compatibility with WooCommerce 4.0.0.
 
