@@ -705,6 +705,32 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 					$this->saved_prices['shop'][ $product_id ] = $return_price;
 				}
 				return $return_price;
+			} else {
+				// will come here when shop behaviour is set to show_in_different (show prices in different currencies ).
+				// and when the product does not have a currency set.
+				switch ( $this->cart_checkout_behaviour ) {
+					case 'convert_first_product':
+					case 'convert_last_product':
+						$shop_currency = get_option( 'woocommerce_currency' );
+
+						$_currency = $this->get_cart_checkout_currency();
+						if ( false !== $_currency && ! isset( $_product->alg_wc_cpp ) && $_currency != $shop_currency ) {
+
+							if ( $do_save_prices && isset( $this->saved_prices['shop'][ $product_id ] ) ) {
+								return $this->saved_prices['shop'][ $product_id ];
+							}
+
+							$exchange_rate          = alg_wc_cpp_get_currency_exchange_rate( $_currency );
+							$currency_exchange_rate = 1 / $exchange_rate;
+
+							$return_price = (float) $price * $currency_exchange_rate;
+							if ( $do_save_prices ) {
+								$this->saved_prices['shop'][ $product_id ] = $return_price;
+							}
+							return $return_price;
+						}
+					break;			
+				}
 			}
 			return $price;
 		}
