@@ -108,6 +108,11 @@ There is a number of scenarios that can be implemented with this plugin:
 
 == Changelog ==
 
+= 1.4.7 - 20/03/2020 =
+* Updated compatibility with WordPress 5.5
+* Updated compatibility with WooCommerce 4.5
+* Fix - Cart & Checkout behaviour option when set to 'Convert to last product currency' & 'Convert to first product currency' amount was not updated. This is fixed now.
+
 = 1.4.6 - 20/03/2020 =
 * Update compatibility with WooCommerce 4.0.0.
 
