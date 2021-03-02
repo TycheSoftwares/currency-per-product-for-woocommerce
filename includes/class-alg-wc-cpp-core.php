@@ -73,6 +73,8 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 				// Grouped.
 				if ( ! $this->convert_in_shop ) {
 					add_filter( 'woocommerce_grouped_price_html', array( $this, 'grouped_price_html' ), PHP_INT_MAX, 2 );
+					// Admin Order.
+					add_action( 'woocommerce_ajax_add_order_item_meta', array( $this, 'change_order_currency' ), PHP_INT_MAX, 3 );
 				}
 
 				// Shipping.
@@ -931,6 +933,37 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 			return $currency;
 		}
 
+		/**
+		 * Change the Order currency based on the plugin settings.
+		 * 
+		 * @param integer $item_id - Item ID.
+		 * @param object  $item - WC Order Item.
+		 * @param object  $order - WC Order.
+		 * @return object $item - WC Order Item.
+		 *
+		 * @since 1.4.6
+		 */
+		public function change_order_currency( $item_id, $item, $order ) {
+
+			// check the product currency.
+			$product_id = $item->get_product_id();
+
+			if ( $product_id > 0 ) {
+				// get the product currency.
+				$prd_currency = get_post_meta( $product_id, '_alg_wc_cpp_currency', true );
+
+				// get the shop currency.
+				$shop_currency = get_woocommerce_currency();
+
+				// check if it's different than the Shop currency.
+				if ( $prd_currency !== $shop_currency ) {
+					$order->set_currency( $prd_currency );
+					$order->save();
+				}
+			}
+
+			return $item;
+		}
 	}
 
 endif;
