@@ -935,7 +935,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 
 		/**
 		 * Change the Order currency based on the plugin settings.
-		 * 
+		 *
 		 * @param integer $item_id - Item ID.
 		 * @param object  $item - WC Order Item.
 		 * @param object  $order - WC Order.
