@@ -920,12 +920,21 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 			$cart_checkout_currency      = $this->get_cart_checkout_currency();
 			$current_product_id_currency = $this->get_current_product_id_and_currency();
 			if ( $this->convert_in_shop && ! $this->is_admin_product_edit() ) {
+				// When shop behaviour is set to Convert to shop currency.
 				return $currency;
 			} elseif ( $this->is_cart_or_checkout() ) {
 				if ( false !== $cart_checkout_currency ) {
+					// Currency for cart/checkout page.
 					return $cart_checkout_currency;
 				}
+			} elseif ( wp_doing_ajax() && false !== $current_product_id_currency && 'convert_shop_default' === $this->cart_checkout_behaviour ) {
+				// When Cart/Checkout behaviour set to Convert to shop default currency.
+				return $currency;
+			} elseif ( wp_doing_ajax() && false === $cart_checkout_currency && 'convert_first_product' === $this->cart_checkout_behaviour ) {
+				// When Cart/Checkout behaviour set to Convert to first product currency and when first product added have base currency.
+				return $currency;
 			} elseif ( false !== $current_product_id_currency ) {
+				// Currency for the every product.
 				return $current_product_id_currency;
 			} elseif ( wp_doing_ajax() && false !== $cart_checkout_currency ) {
 				return $cart_checkout_currency;
