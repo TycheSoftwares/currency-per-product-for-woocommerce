@@ -108,6 +108,10 @@ There is a number of scenarios that can be implemented with this plugin:
 
 == Changelog ==
 
+= 1.4.8 - 20/04/2021 =
+* Fix - On creating the order manually from the backend it was showing the default shop currency instead of showing the product currency. This is fixed now.
+* Fix - The currency symbol in the Mini cart was coming wrong. This is fixed now.
+
 = 1.4.7 - 08/10/2020 =
 * Updated compatibility with WordPress 5.5
 * Updated compatibility with WooCommerce 4.5
