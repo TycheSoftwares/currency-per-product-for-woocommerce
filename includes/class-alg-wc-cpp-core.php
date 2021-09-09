@@ -430,43 +430,41 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		 * @param array $package Package array.
 		 */
 		public function change_shipping_price( $package_rates, $package ) {
-			if ( $this->is_cart_or_checkout() ) {
-				if ( WC()->cart->is_empty() ) {
-					return $package_rates;
-				}
-				switch ( $this->cart_checkout_behaviour ) {
-					case 'leave_one_product':
-					case 'leave_same_currency':
-					case 'convert_first_product':
-					case 'convert_last_product':
-						$shop_currency = get_option( 'woocommerce_currency' );
-						$_currency     = $this->get_cart_checkout_currency();
-						if ( false !== $_currency && $_currency !== $shop_currency ) {
-							$currency_exchange_rate = alg_wc_cpp_get_currency_exchange_rate( $_currency );
-							if ( 0 !== $currency_exchange_rate && 1 !== $currency_exchange_rate ) {
-								$currency_exchange_rate = 1 / $currency_exchange_rate;
-								$modified_package_rates = array();
-								foreach ( $package_rates as $id => $package_rate ) {
-									if ( isset( $package_rate->cost ) ) {
-										$package_rate->cost = $package_rate->cost * $currency_exchange_rate;
-										if ( isset( $package_rate->taxes ) && ! empty( $package_rate->taxes ) ) {
-											foreach ( $package_rate->taxes as $tax_id => $tax ) {
-												$package_rate->taxes[ $tax_id ] = $package_rate->taxes[ $tax_id ] * $currency_exchange_rate;
-											}
+			if ( WC()->cart->is_empty() ) {
+				return $package_rates;
+			}
+			switch ( $this->cart_checkout_behaviour ) {
+				case 'leave_one_product':
+				case 'leave_same_currency':
+				case 'convert_first_product':
+				case 'convert_last_product':
+					$shop_currency = get_option( 'woocommerce_currency' );
+					$_currency     = $this->get_cart_checkout_currency();
+					if ( false !== $_currency && $_currency !== $shop_currency ) {
+						$currency_exchange_rate = alg_wc_cpp_get_currency_exchange_rate( $_currency );
+						if ( 0 !== $currency_exchange_rate && 1 !== $currency_exchange_rate ) {
+							$currency_exchange_rate = 1 / $currency_exchange_rate;
+							$modified_package_rates = array();
+							foreach ( $package_rates as $id => $package_rate ) {
+								if ( isset( $package_rate->cost ) ) {
+									$package_rate->cost = $package_rate->cost * $currency_exchange_rate;
+									if ( isset( $package_rate->taxes ) && ! empty( $package_rate->taxes ) ) {
+										foreach ( $package_rate->taxes as $tax_id => $tax ) {
+											$package_rate->taxes[ $tax_id ] = $package_rate->taxes[ $tax_id ] * $currency_exchange_rate;
 										}
 									}
-									$modified_package_rates[ $id ] = $package_rate;
 								}
-								return $modified_package_rates;
-							} else {
-								return $package_rates;
+								$modified_package_rates[ $id ] = $package_rate;
 							}
+							return $modified_package_rates;
 						} else {
 							return $package_rates;
 						}
-					default: // case 'convert_shop_default':.
+					} else {
 						return $package_rates;
-				}
+					}
+				default: // case 'convert_shop_default':.
+					return $package_rates;
 			}
 			return $package_rates;
 		}
