@@ -109,6 +109,9 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 					// Grouped products.
 					add_filter( 'woocommerce_get_price_including_tax', array( $this, 'change_price_grouped' ), PHP_INT_MAX, 3 );
 					add_filter( 'woocommerce_get_price_excluding_tax', array( $this, 'change_price_grouped' ), PHP_INT_MAX, 3 );
+					if ( 'yes' === get_option( 'alg_wc_cpp_original_price_in_shop_enabled', 'no' ) ) {
+						add_action( 'admin_enqueue_scripts', array( $this, 'cpp_admin_styles' ), PHP_INT_MAX );
+					}
 				}
 
 				// "Original price" in shop.
@@ -134,6 +137,24 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 				}
 			}
 		}
+
+		/**
+		 * Function to enque js script on admin products page.
+		 */
+		public function cpp_admin_styles() {
+			if ( get_post_type() === 'product' ) {
+				$plugin_url       = plugins_url() . '/currency-per-product-for-woocommerce';
+				$numbers_instance = alg_wc_cpp();
+				wp_enqueue_script(
+					'cpp_quick_edit',
+					$plugin_url . '/includes/js/cpp-quick-edit.js',
+					'',
+					$numbers_instance->version,
+					false
+				);
+			}
+		}
+
 		/**
 		 * Function alg_wc_cpp_products_by_price_filter
 		 *
