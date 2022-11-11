@@ -21,6 +21,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
 
 // Check if WooCommerce is active.
 $plugin_woo = 'woocommerce/woocommerce.php';
@@ -108,6 +109,7 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 
 			// Admin.
 			if ( is_admin() ) {
+				add_action( 'before_woocommerce_init', array( &$this, 'cpp_lite_custom_order_tables_compatibility' ), 999 );
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 				// Settings.
@@ -211,6 +213,18 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 		 */
 		public function plugin_path() {
 			return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		}
+		/**
+		 * Sets the compatibility with Woocommerce HPOS.
+		 *
+		 * @since 1.5.0
+		 */
+		public function cpp_lite_custom_order_tables_compatibility() {
+
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'currency-per-product-for-woocommerce/currency-per-product-for-woocommerce.php', true );
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'orders_cache', 'currency-per-product-for-woocommerce/currency-per-product-for-woocommerce.php', true );
+			}
 		}
 
 	}
