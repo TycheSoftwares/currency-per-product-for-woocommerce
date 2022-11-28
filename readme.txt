@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 5.8
+Tested up to: 6.1
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -107,6 +107,10 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+
+= 1.5.0 - 29/11/2022 =
+* Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
 
 = 1.4.8 - 20/04/2021 =
 * Fix - On creating the order manually from the backend it was showing the default shop currency instead of showing the product currency. This is fixed now.
