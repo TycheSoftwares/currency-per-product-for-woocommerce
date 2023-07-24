@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Currency per Product for WooCommerce - Admin Class
  *
@@ -59,7 +59,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 
 			wp_register_script(
 				'tyche',
-				plugins_url( 'includes/js/tyche.js', __FILE__ ),
+				plugins_url() . '/currency-per-product-for-woocommerce/assets/js/tyche.js',
 				array( 'jquery' ),
 				'1.5.0',
 				false

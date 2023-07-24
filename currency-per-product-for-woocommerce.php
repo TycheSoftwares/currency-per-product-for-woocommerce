@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Set diferent currencies for different WooCommerce products.
  *
@@ -164,8 +164,8 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 				array(
 					'plugin_name'       => 'Currency per Product for WooCommerce',
 					'plugin_base'       => 'currency-per-product-for-woocommerce/currency-per-product-for-woocommerce.php',
-					'script_file'       => $this->plugin_url() . '/currency-per-product-for-woocommerce/includes/js/plugin-deactivation.js',
-					'plugin_short_name' => 'cpp',
+					'script_file'       => $this->plugin_url() . '/assets/js/plugin-deactivation.js',
+					'plugin_short_name' => 'cpp_lite',
 					'version'           => $this->version,
 				)
 			);

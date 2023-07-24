@@ -1,5 +1,5 @@
 var $cpp_tyche_plugin_deactivation_modal = {},
-	$tyche_plugin_name = 'cpp';
+	$tyche_plugin_name                   = 'cpp_lite';
 
 ( function() {
 

@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Tyche Softwares.
  *
@@ -192,14 +192,14 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 					'headers'     => array( 'user-agent' => 'TSTracker/' . md5( esc_url( home_url( '/' ) ) ) . ';' ),
 					'body'        => wp_json_encode(
 						array(
-							'action'         => 'plugin-deactivation',
-							'plugin_slug'    => $this->plugin_short_name,
-							'url'            => home_url(),
-							'email'          => apply_filters( 'ts_tracker_admin_email', get_option( 'admin_email' ) ),
-							'plugin_name'    => $this->plugin_name,
-							'reason_id'      => isset( $_POST['reason_id'] ) ? wp_unslash( $_POST['reason_id'] ) : '',
-							'reason_text'    => isset( $_POST['reason_text'] ) ? wp_unslash( $_POST['reason_text'] ) : '',
-							'reason_info'    => isset( $_POST['reason_info'] ) ? wp_unslash( $_POST[''] ) : 'reason_info',
+							'action'      => 'plugin-deactivation',
+							'plugin_slug' => $this->plugin_short_name,
+							'url'         => home_url(),
+							'email'       => apply_filters( 'ts_tracker_admin_email', get_option( 'admin_email' ) ),
+							'plugin_name' => $this->plugin_name,
+							'reason_id'   => isset( $_POST['reason_id'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_id'] ) ) : '',
+							'reason_text' => isset( $_POST['reason_text'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_text'] ) ) : '',
+							'reason_info' => isset( $_POST['reason_info'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_info'] ) ) : '',
 						)
 					),
 				)

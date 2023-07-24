@@ -6,7 +6,7 @@ var tyche = {
 	extend: function() {
 		let target = arguments[ 0 ] || {},
 			length = arguments.length,
-			self = this,
+			self   = this,
 			option;
 
 		for ( let i = 0; i < length; i++ ) {
@@ -21,7 +21,7 @@ var tyche = {
 				}
 
 				target = self;
-				args = arguments[ 0 ];
+				args   = arguments[ 0 ];
 			}
 
 			if ( 0 === args.length ) {
@@ -86,7 +86,7 @@ var tyche = {
 				return '';
 			}
 
-			let data = $data.deactivation_data,
+			let data  = $data.deactivation_data,
 				nonce = $data.nonce;
 
 			if ( 'undefined' === typeof data.template || 'undefined' === typeof data.reasons ) {
@@ -94,8 +94,8 @@ var tyche = {
 			}
 
 			let template = data.template,
-				reasons = data.reasons,
-				html = '';
+				reasons  = data.reasons,
+				html     = '';
 
 			if ( Array.isArray( reasons ) && reasons.length > 0 ) {
 				reasons.forEach( function( item ) {
@@ -131,7 +131,7 @@ var tyche = {
 
 			let btn_deactivate = modal.find( '.button-deactivate' );
 
-			if ( btn_deactivate.length > 0 && modal.hasClass( 'no-confirmation-message' ) && !btn_deactivate.hasClass( 'allow-deactivate' ) ) {
+			if ( btn_deactivate.length > 0 && modal.hasClass( 'no-confirmation-message' ) && ! btn_deactivate.hasClass( 'allow-deactivate' ) ) {
 				btn_deactivate.addClass( 'allow-deactivate' );
 				modal.find( '.ts-modal-panel' ).removeClass( 'active ' );
 				modal.find( '[data-panel-id="reasons"]' ).addClass( 'active' );
@@ -172,16 +172,16 @@ var tyche = {
 
 			button_submit: function( $this, $data, plugin ) {
 
-				if ( jQuery( $this ).hasClass( 'disabled' ) || !jQuery( $this ).hasClass( 'allow-deactivate' ) ) {
+				if ( jQuery( $this ).hasClass( 'disabled' ) || ! jQuery( $this ).hasClass( 'allow-deactivate' ) ) {
 					return;
 				}
 
-				let modal = jQuery( $this ).parents( `.${plugin}.ts-modal` ),
-					option = jQuery( 'input[type="radio"]:checked' ),
-					reason = option.parents( 'li:first' ),
+				let modal    = jQuery( $this ).parents( `.${plugin}.ts-modal` ),
+					option   = jQuery( 'input[type="radio"]:checked' ),
+					reason   = option.parents( 'li:first' ),
 					response = reason.find( 'textarea, input[type="text"]' ),
-					nonce = jQuery( 'input[name="nonce"]' ).val(),
-					data = {
+					nonce    = jQuery( 'input[name="nonce"]' ).val(),
+					data     = {
 						'action': 'tyche_plugin_deactivation_submit_action',
 						'reason_id': 0,
 						'reason_text': 'Deactivated without any option',
@@ -189,13 +189,13 @@ var tyche = {
 					};
 
 				if ( 0 !== option.length ) {
-					data.reason_id = option.val();
+					data.reason_id   = option.val();
 					data.reason_text = reason.text().trim();
 					data.reason_info = 0 !== response.length ? response.val().trim() : '';
 				}
 
 				let ajax_url = tyche.plugin_deactivation.fn.return( $data, 'ajax_url' ),
-					href = jQuery( `.${plugin}.ts-slug` ).prev().prop( 'href' );
+					href     = jQuery( `.${plugin}.ts-slug` ).prev().prop( 'href' );
 
 				if ( '' !== ajax_url && '' !== href ) {
 					jQuery.ajax( {
@@ -222,7 +222,7 @@ var tyche = {
 				}
 
 				// If the user has not clicked the close button and the clicked element is inside the modal dialog, just return.
-				if ( !target.hasClass( 'button-close' ) && ( target.parents( '.ts-modal-body' ).length > 0 || target.parents( '.ts-modal-footer' ).length > 0 ) ) {
+				if ( ! target.hasClass( 'button-close' ) && ( target.parents( '.ts-modal-body' ).length > 0 || target.parents( '.ts-modal-footer' ).length > 0 ) ) {
 					return;
 				}
 
