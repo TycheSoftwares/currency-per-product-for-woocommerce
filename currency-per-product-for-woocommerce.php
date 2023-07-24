@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Set diferent currencies for different WooCommerce products.
  *
@@ -158,6 +158,17 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 			require_once 'includes/functions/alg-wc-cpp-exchange-rates-functions.php';
 			// Core.
 			$this->core = require_once 'includes/class-alg-wc-cpp-core.php';
+
+			require_once 'includes/class-tyche-plugin-deactivation.php';
+			new Tyche_Plugin_Deactivation(
+				array(
+					'plugin_name'       => 'Currency per Product for WooCommerce',
+					'plugin_base'       => 'currency-per-product-for-woocommerce/currency-per-product-for-woocommerce.php',
+					'script_file'       => $this->plugin_url() . '/assets/js/plugin-deactivation.js',
+					'plugin_short_name' => 'cpp_lite',
+					'version'           => $this->version,
+				)
+			);
 		}
 
 		/**

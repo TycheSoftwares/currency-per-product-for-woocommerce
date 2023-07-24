@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Currency per Product for WooCommerce - Admin Class
  *
@@ -46,6 +46,26 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 				add_action( 'save_post_product', array( $this, 'calculate_product_price_on_product_saved' ), PHP_INT_MAX, 1 );
 				add_action( 'woocommerce_ajax_save_product_variations', array( $this, 'calculate_product_price_on_product_saved_ajax' ), PHP_INT_MAX, 1 );
 			}
+			add_action( 'admin_enqueue_scripts', array( &$this, 'cpp_common_scripts_js' ), 1000001 );
+		}
+
+		/**
+		 * Load JS file on Frontend
+		 *
+		 * @globals int $orddd_version Current plugin version
+		 * @since 1.0
+		 */
+		public static function cpp_common_scripts_js() {
+
+			wp_register_script(
+				'tyche',
+				plugins_url() . '/currency-per-product-for-woocommerce/assets/js/tyche.js',
+				array( 'jquery' ),
+				'1.5.0',
+				false
+			);
+
+			wp_enqueue_script( 'tyche' );
 		}
 
 		/**
