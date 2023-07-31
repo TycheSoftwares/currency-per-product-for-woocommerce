@@ -94,12 +94,16 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 				if ( $this->convert_in_shop ) {
 					// Regular price.
 					$price_filter = ( ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0 ? 'woocommerce_get_regular_price' : 'woocommerce_product_get_regular_price' );
-					add_filter( $price_filter, array( $this, 'change_price' ), PHP_INT_MAX, 2 );
+					if ( ! isset( $_GET['post_type'] ) || ( isset( $_GET['post_type'] ) && $_GET['post_type'] !== 'product'  ) ) {
+						add_filter( $price_filter, array( $this, 'change_price' ), PHP_INT_MAX, 2 );
+					}
 					add_filter( 'woocommerce_product_variation_get_regular_price', array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 					add_filter( 'woocommerce_variation_prices_regular_price', array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 					// Sale price.
 					$price_filter = ( ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0 ? 'woocommerce_get_sale_price' : 'woocommerce_product_get_sale_price' );
-					add_filter( $price_filter, array( $this, 'change_price' ), PHP_INT_MAX, 2 );
+					if ( ! isset( $_GET['post_type'] ) || ( isset( $_GET['post_type'] ) && $_GET['post_type'] !== 'product'  ) ) {
+						add_filter( $price_filter, array( $this, 'change_price' ), PHP_INT_MAX, 2 );
+					}
 					add_filter( 'woocommerce_product_variation_get_sale_price', array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 					add_filter( 'woocommerce_variation_prices_sale_price', array( $this, 'change_price' ), PHP_INT_MAX, 2 );
 					// Variation price.
