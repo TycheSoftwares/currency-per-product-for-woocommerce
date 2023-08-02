@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <?php // phpcs:ignore
-=======
-<?php
->>>>>>> 735043e938e76620003ffe26025ee01a9a6c5615
 /**
  * Tyche Softwares.
  *

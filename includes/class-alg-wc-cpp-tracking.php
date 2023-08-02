@@ -115,7 +115,6 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 			$currencies['alg_wc_cpp_currency_0']          = get_option( 'alg_wc_cpp_currency_0' );
 			$exchange_rates['alg_wc_cpp_exchange_rate_0'] = get_option( 'alg_wc_cpp_exchange_rate_0' );
 			for ( $i = 1; $i <= $total_number; $i++ ) {
-<<<<<<< HEAD
 				$currencies[ 'alg_wc_cpp_currency_' . $i ]          = get_option( 'alg_wc_cpp_currency_' . $i );
 				$exchange_rates[ 'alg_wc_cpp_exchange_rate_' . $i ] = get_option( 'alg_wc_cpp_exchange_rate_' . $i );
 			}
@@ -151,45 +150,6 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 				'alg_wc_cpp_save_products_prices'      => get_option( 'alg_wc_cpp_save_products_prices' ),
 				'product_count'                        => self::cpp_get_each_currency_count(), // Each currency count product.
 				'order_count'                          => self::cpp_get_each_currency_count( 'order' ), // Each currency count order.
-=======
-				$currencies['alg_wc_cpp_currency_' . $i] = get_option( 'alg_wc_cpp_currency_' . $i );
-			}
-			for ( $i = 1; $i <= $total_number; $i++ ) {
-				$exchange_rates['alg_wc_cpp_exchange_rate_' . $i] = get_option( 'alg_wc_cpp_exchange_rate_' . $i );
-			}
-
-			$plugin_data         = array(
-				'ts_meta_data_table_name'                      => 'ts_tracking_cpp_lite_meta_data',
-				'ts_plugin_name'                               => 'Currency per Product for WooCommerce',
-				'plugin_version'                               => get_option( 'alg_wc_cpp_version', '' ),
-				'alg_wc_cpp_enabled'                           => get_option( 'alg_wc_cpp_enabled' ), // General Settings.
-				'alg_wc_cpp_currency_reports_enabled'          => get_option( 'alg_wc_cpp_currency_reports_enabled' ),
-				'alg_wc_cpp_custom_currency_symbol_enabled'    => get_option( 'alg_wc_cpp_custom_currency_symbol_enabled' ),
-				'alg_wc_cpp_custom_currency_symbol_template'   => get_option( 'alg_wc_cpp_custom_currency_symbol_template' ),
-				'alg_wc_cpp_shop_behaviour'                    => get_option( 'alg_wc_cpp_shop_behaviour' ), // Behavior Settings.
-				'alg_wc_cpp_original_price_in_shop_enabled'    => get_option( 'alg_wc_cpp_original_price_in_shop_enabled' ),
-				'alg_wc_cpp_original_price_in_shop_template'   => get_option( 'alg_wc_cpp_original_price_in_shop_template' ),
-				'alg_wc_cpp_cart_checkout'                     => get_option( 'alg_wc_cpp_cart_checkout' ),
-				'alg_wc_cpp_cart_checkout_leave_one_product'   => get_option( 'alg_wc_cpp_cart_checkout_leave_one_product' ),
-				'alg_wc_cpp_cart_checkout_leave_same_currency' => get_option( 'alg_wc_cpp_cart_checkout_leave_same_currency' ),
-				'alg_wc_cpp_total_number'                      => get_option( 'alg_wc_cpp_total_number' ), // Currency Settings.
-				'alg_wc_cpp_by_users_enabled'                  => get_option( 'alg_wc_cpp_by_users_enabled' ),
-				'alg_wc_cpp_by_user_roles_enabled'             => get_option( 'alg_wc_cpp_by_user_roles_enabled' ),
-				'alg_wc_cpp_by_product_cats_enabled'           => get_option( 'alg_wc_cpp_by_product_cats_enabled' ),
-				'alg_wc_cpp_by_product_tags_enabled'           => get_option( 'alg_wc_cpp_by_product_tags_enabled' ),
-				'currency_count'                               => count( $currencies ),
-				'currency_list'                                => wp_json_encode( $currencies ),
-				'alg_wc_cpp_exchange_rate_update'              => get_option( 'alg_wc_cpp_exchange_rate_update' ), // Exchange Rate Settings.
-				'alg_wc_cpp_exchange_rate_update_rate'         => get_option( 'alg_wc_cpp_exchange_rate_update_rate' ),
-				'alg_wc_cpp_currency_exchange_rates_server'    => get_option( 'alg_wc_cpp_currency_exchange_rates_server' ),
-				'exchange_rates'                               => wp_json_encode( $exchange_rates ),
-				'alg_wc_cpp_fix_mini_cart'                     => get_option( 'alg_wc_cpp_fix_mini_cart' ), // Advanced Settings.
-				'alg_wc_cpp_sort_by_converted_price'           => get_option( 'alg_wc_cpp_sort_by_converted_price' ),
-				'alg_wc_cpp_filter_by_converted_price'         => get_option( 'alg_wc_cpp_filter_by_converted_price' ),
-				'alg_wc_cpp_save_products_prices'              => get_option( 'alg_wc_cpp_save_products_prices' ),
-				'product_count'                                => self::cpp_get_each_currency_count(), // Each currency count product.
-				'order_count'                                  => self::cpp_get_each_currency_count( 'order' ), // Each currency count order.
->>>>>>> 735043e938e76620003ffe26025ee01a9a6c5615
 			);
 			$data['plugin_data'] = $plugin_data;
 
@@ -205,7 +165,6 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 			global $wpdb;
 
 			if ( 'order' === $type || 'procuct' === $type ) {
-<<<<<<< HEAD
 				$total_count  = array();
 				$total_number = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
 				$currency_key = ( 'order' === $type ) ? '_order_currency' : '_alg_wc_cpp_currency';
@@ -214,14 +173,6 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 				for ( $i = 1; $i <= $total_number; $i++ ) {
 					$i_key                 = get_option( 'alg_wc_cpp_currency_' . $i );
 					$total_count[ $i_key ] = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT(post_id)) FROM `wp_postmeta` WHERE `meta_key` LIKE %s AND `meta_value` = %s', '%' . $wpdb->esc_like( $currency_key ) . '%', $i_key ) ); // db call ok. no-cache ok.
-=======
-				$total_count                                          = array();
-				$total_number                                         = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
-				$currency_key                                         = ( 'order' === $type ) ? '_order_currency' : '_alg_wc_cpp_currency';
-				$total_count[ get_option( 'alg_wc_cpp_currency_0' ) ] = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT(post_id)) FROM `wp_postmeta` WHERE `meta_key` LIKE %s AND `meta_value` = "' . get_option( 'alg_wc_cpp_currency_0' ) . '"', '%' . $wpdb->esc_like( $currency_key ) . '%' ) ); // db call ok. no-cache ok.
-				for ( $i = 1; $i <= $total_number; $i++ ) {
-					$total_count[ get_option( 'alg_wc_cpp_currency_' . $i ) ] = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT(post_id)) FROM `wp_postmeta` WHERE `meta_key` LIKE %s AND `meta_value` = "' . get_option( 'alg_wc_cpp_currency_' . $i ) . '"', '%' . $wpdb->esc_like( $currency_key ) . '%' ) ); // db call ok. no-cache ok.
->>>>>>> 735043e938e76620003ffe26025ee01a9a6c5615
 				}
 
 				return wp_json_encode( $total_count );
