@@ -1,7 +1,10 @@
 /**
+ * Tyche Softwares.
+ *
  * Tracking notice js.
  *
- * @since 6.8
+ * @package TycheSoftwares/PluginTracking
+ * @since   6.8
 */
 jQuery( document ).ready(
 	function() {
