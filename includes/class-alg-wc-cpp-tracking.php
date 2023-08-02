@@ -165,10 +165,10 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 			global $wpdb;
 
 			if ( 'order' === $type || 'procuct' === $type ) {
-				$total_count  = array();
-				$total_number = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
-				$currency_key = ( 'order' === $type ) ? '_order_currency' : '_alg_wc_cpp_currency';
-				$f_key        = get_option( 'alg_wc_cpp_currency_0' );
+				$total_count           = array();
+				$total_number          = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
+				$currency_key          = ( 'order' === $type ) ? '_order_currency' : '_alg_wc_cpp_currency';
+				$f_key                 = get_option( 'alg_wc_cpp_currency_0' );
 				$total_count[ $f_key ] = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT(post_id)) FROM `wp_postmeta` WHERE `meta_key` LIKE %s AND `meta_value` = %s', '%' . $wpdb->esc_like( $currency_key ) . '%', $f_key ) ); // db call ok. no-cache ok.
 				for ( $i = 1; $i <= $total_number; $i++ ) {
 					$i_key                 = get_option( 'alg_wc_cpp_currency_' . $i );

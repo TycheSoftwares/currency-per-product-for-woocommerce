@@ -1,3 +1,8 @@
+/**
+ * Tracking notice js.
+ *
+ * @since 6.8
+*/
 jQuery( document ).ready(
 	function() {
 		jQuery( '.notice.is-dismissible' ).each(
