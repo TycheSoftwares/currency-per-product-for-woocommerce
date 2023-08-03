@@ -164,7 +164,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 		public static function cpp_get_each_currency_count( $type = 'product' ) {
 			global $wpdb;
 
-			if ( 'order' === $type || 'products' === $type ) {
+			if ( 'order' === $type || 'product' === $type ) {
 				$total_count           = array();
 				$total_number          = apply_filters( 'alg_wc_cpp', 1, 'value_total_number' );
 				$currency_key          = ( 'order' === $type ) ? '_order_currency' : '_alg_wc_cpp_currency';
