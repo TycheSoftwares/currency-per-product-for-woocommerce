@@ -33,7 +33,7 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 		 *
 		 * @var string $api_url
 		 */
-		protected $api_url = 'https://tracking.tychesoftwares.com/v2';
+		protected $api_url = 'https://tracking.tychesoftwares.com/v2/';
 
 		/**
 		 * Plugin Name.
@@ -117,7 +117,7 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 		public function plugin_action_links( $links ) {
 
 			if ( isset( $links['deactivate'] ) ) {
-				$links['deactivate'] .= '<i class="' . $this->plugin_short_name . ' ts-slug" data-slug="' . $this->plugin_base . '"></i>';
+				$links['deactivate'] .= '<i class="' . $this->plugin_short_name . ' ts-slug" data-slug="' . $this->plugin_base . '" data-plugin="' . $this->plugin_name . '"></i>';
 			}
 
 			return $links;
@@ -163,7 +163,7 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 				array(
 					'deactivation_data' => $data,
 					'ajax_url'          => admin_url( 'admin-ajax.php' ),
-					'nonce'             => wp_create_nonce( 'tyche_plugin_deactivation' ),
+					'nonce'             => wp_create_nonce( 'tyche_plugin_deactivation_submit_action' ),
 				)
 			);
 
@@ -177,12 +177,12 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 		 */
 		public function tyche_plugin_deactivation_submit_action() {
 
-			if ( ! wp_verify_nonce( $_POST['nonce'], 'tyche_plugin_deactivation_submit_action' ) || ! isset( $_POST['data'] ) || empty( $_POST['data'] ) ) { // phpcs:ignore
+			if ( ! wp_verify_nonce( $_POST['nonce'], 'tyche_plugin_deactivation_submit_action' ) || ! isset( $_POST['reason_id'] ) || ! isset( $_POST['reason_text'] ) || ! isset( $_POST['plugin_short_name'] ) || ! isset( $_POST['plugin_name'] ) ) { // phpcs:ignore
 				wp_send_json_error( 0 );
 			}
 
 			wp_safe_remote_post(
-				$this->$api_url,
+				$this->api_url,
 				array(
 					'method'      => 'POST',
 					'timeout'     => 60,
@@ -193,10 +193,10 @@ if ( ! class_exists( 'Tyche_Plugin_Deactivation' ) ) {
 					'body'        => wp_json_encode(
 						array(
 							'action'      => 'plugin-deactivation',
-							'plugin_slug' => $this->plugin_short_name,
+							'plugin_slug' => isset( $_POST['plugin_short_name'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin_short_name'] ) ) : '',
 							'url'         => home_url(),
 							'email'       => apply_filters( 'ts_tracker_admin_email', get_option( 'admin_email' ) ),
-							'plugin_name' => $this->plugin_name,
+							'plugin_name' => isset( $_POST['plugin_name'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin_name'] ) ) : '',
 							'reason_id'   => isset( $_POST['reason_id'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_id'] ) ) : '',
 							'reason_text' => isset( $_POST['reason_text'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_text'] ) ) : '',
 							'reason_info' => isset( $_POST['reason_info'] ) ? sanitize_text_field( wp_unslash( $_POST['reason_info'] ) ) : '',
