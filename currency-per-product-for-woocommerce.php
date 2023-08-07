@@ -109,6 +109,8 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 
 			// Admin.
 			if ( is_admin() ) {
+				require_once 'includes/class-alg-wc-cpp-tracking.php';
+
 				add_action( 'before_woocommerce_init', array( &$this, 'cpp_lite_custom_order_tables_compatibility' ), 999 );
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
@@ -153,6 +155,17 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 		 * @since   1.0.0
 		 */
 		public function includes() {
+			require_once 'includes/component/plugin-tracking/class-tyche-plugin-tracking.php';
+			new Tyche_Plugin_Tracking(
+				array(
+					'plugin_name'       => 'Currency per Product for WooCommerce',
+					'plugin_locale'     => 'currency-per-product-for-woocommerce',
+					'plugin_short_name' => 'cpp_lite',
+					'version'           => $this->version,
+					'blog_link'         => 'https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/',
+				)
+			);
+
 			// Functions.
 			require_once 'includes/functions/alg-wc-cpp-functions.php';
 			require_once 'includes/functions/alg-wc-cpp-exchange-rates-functions.php';

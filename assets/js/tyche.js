@@ -1,7 +1,7 @@
 "use strict";
 
 var tyche = {
-	version: '1.1', // version of tyche constructor.
+	version: '1.1.1', // version of tyche constructor.
 	constructor: tyche,
 	extend: function() {
 		let target = arguments[ 0 ] || {},
@@ -185,7 +185,9 @@ var tyche = {
 						'action': 'tyche_plugin_deactivation_submit_action',
 						'reason_id': 0,
 						'reason_text': 'Deactivated without any option',
-						nonce
+						'plugin_short_name': plugin,
+						'plugin_name': jQuery( `.${plugin}.ts-slug` ).attr( 'data-plugin' ),
+						'nonce': nonce
 					};
 
 				if ( 0 !== option.length ) {
