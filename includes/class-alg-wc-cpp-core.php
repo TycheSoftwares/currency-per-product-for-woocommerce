@@ -22,6 +22,13 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 	class Alg_WC_CPP_Core {
 
 		/**
+		 * Convert in shop.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $convert_in_shop = '';
+		/**
 		 * Cart_checkout_behaviour.
 		 *
 		 * @var   string

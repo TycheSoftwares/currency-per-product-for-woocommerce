@@ -23,6 +23,20 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Currencies' ) ) :
 	class Alg_WC_CPP_Settings_Currencies extends Alg_WC_CPP_Settings_Section {
 
 		/**
+		 * ID.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $id = '';
+		/**
+		 * Description.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $desc = '';
+		/**
 		 * Constructor.
 		 *
 		 * @version 1.4.0
