@@ -61,6 +61,20 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 		 * @since 1.0.0
 		 */
 		public $version = '1.5.0';
+		/**
+		 * Core.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $core = '';
+		/**
+		 * Settings.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $settings = '';
 
 		/**
 		 * Single instance of the class.
