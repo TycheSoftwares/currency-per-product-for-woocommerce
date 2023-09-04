@@ -22,6 +22,20 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 	class Alg_WC_CPP_Core {
 
 		/**
+		 * Cart_checkout_behaviour.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $cart_checkout_behaviour = '';
+		/**
+		 * Custom_currency_symbol_template.
+		 *
+		 * @var   string
+		 * @since 1.6.0
+		 */
+		public $custom_currency_symbol_template = '';
+		/**
 		 * Constructor.
 		 *
 		 * @version 1.4.1
