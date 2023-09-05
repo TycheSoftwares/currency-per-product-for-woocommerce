@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 6.1
+Tested up to: 6.3.1
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -108,6 +108,12 @@ There is a number of scenarios that can be implemented with this plugin:
 
 == Changelog ==
 
+= 1.6.0 - 05/09/2023 =
+* Fix - Fixed Compatibility with PHP 8.2.
+* Fix - When 'Quick Edit' option is used then the set price in other currency changes to the base currency exchange price for the product.
+* Fix - The original price is re-calculating when we use the Quick Edit function..
+* Fix - The shipping cost is not calculating correctly in the Cart when increasing/decreasing the product quantity in the cart.
+* Fix - The currency symbol does not display correctly when we manually add subscription.
 
 = 1.5.0 - 29/11/2022 =
 * Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
