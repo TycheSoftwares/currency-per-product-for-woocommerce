@@ -150,7 +150,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 					}
 					// "Filter Products by Price".
 					if ( 'yes' === get_option( 'alg_wc_cpp_filter_by_converted_price', 'no' ) ) {
-						add_filter( 'woocommerce_product_query', array( $this, 'alg_wc_cpp_products_by_price_filter' ), PHP_INT_MAX, 3 );
+						add_filter( 'loop_shop_post_in', array( $this, 'alg_wc_cpp_products_by_price_filter' ), PHP_INT_MAX, 1 );
 						add_filter( 'woocommerce_product_query_meta_query', array( $this, 'price_filter_meta_query' ), PHP_INT_MAX, 2 );
 						add_filter( 'woocommerce_price_filter_widget_min_amount', array( $this, 'alg_wc_cpp_min_price' ), PHP_INT_MAX );
 						add_filter( 'woocommerce_price_filter_widget_max_amount', array( $this, 'alg_wc_cpp_max_price' ), PHP_INT_MAX );
@@ -162,26 +162,56 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		/**
 		 * Function alg_wc_cpp_products_by_price_filter
 		 *
-		 * @param array $query Main Query.
+		 * @param array $product_ids Product ids.
 		 */
-		public function alg_wc_cpp_products_by_price_filter( $query ) {
-			if ( $query->is_main_query() && isset( $_GET['max_price'] ) && isset( $_GET['min_price'] ) ) {
+		public function alg_wc_cpp_products_by_price_filter( $product_ids ) {
+			if ( is_main_query() && isset( $_GET['max_price'] ) && isset( $_GET['min_price'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification
+				$new_ids     = array();
+				$min_price   = ! empty( $_GET['min_price'] ) ? sanitize_text_field( wp_unslash( $_GET['min_price'] ) ) : 0;// phpcs:ignore WordPress.Security.NonceVerification
+				$max_price   = ! empty( $_GET['max_price'] ) ? sanitize_text_field( wp_unslash( $_GET['max_price'] ) ) : 0;// phpcs:ignore WordPress.Security.NonceVerification
 				$product_ids = wc_get_products(
 					array(
 						'return' => 'ids',
 						'limit'  => -1,
 					)
 				);
-				$new_ids = array();
 				foreach ( $product_ids as $product_id ) {
 					$product = wc_get_product( $product_id );
 					$price   = $product->get_price();
-					if ( $price >= $_GET['min_price'] && $price <= $_GET['max_price'] ) {
+					if ( $price >= $_GET['min_price'] && $price <= $_GET['max_price'] ) {// phpcs:ignore WordPress.Security.NonceVerification
 						$new_ids[] = $product_id;
 					}
 				}
-				$query->set( 'post__in', (array) $new_ids );
+				$product_ids = $new_ids;
+				add_filter(
+					'posts_clauses',
+					function( $clauses ) {
+						$_GET['__min_price'] = sanitize_text_field( wp_unslash( $_GET['min_price'] ) );// phpcs:ignore WordPress.Security.NonceVerification
+						$_GET['__max_price'] = sanitize_text_field( wp_unslash( $_GET['max_price'] ) );// phpcs:ignore WordPress.Security.NonceVerification
+						unset( $_GET['min_price'] );// phpcs:ignore WordPress.Security.NonceVerification
+						unset( $_GET['max_price'] );// phpcs:ignore WordPress.Security.NonceVerification
+						return $clauses;
+					},
+					5
+				);
+				add_filter(
+					'posts_clauses',
+					function( $clauses ) {
+						if ( isset( $_GET['__min_price'] ) || isset( $_GET['__max_price'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification
+							$_GET['min_price'] = ( sanitize_text_field( wp_unslash( $_GET['__min_price'] ) ) );// phpcs:ignore WordPress.Security.NonceVerification
+							$_GET['max_price'] = sanitize_text_field( wp_unslash( $_GET['__max_price'] ) );// phpcs:ignore WordPress.Security.NonceVerification
+						}
+						unset( $_GET['__min_price'] );// phpcs:ignore WordPress.Security.NonceVerification
+						unset( $_GET['__max_price'] );// phpcs:ignore WordPress.Security.NonceVerification
+						return $clauses;
+					},
+					55
+				);
+				if ( ! isset( $product_ids[0] ) || empty( $product_ids[0] ) || is_null( $product_ids[0] ) ) {
+					return '';
+				}
 			}
+			return $product_ids;
 		}
 		/**
 		 * Function alg_wc_cpp_steps
