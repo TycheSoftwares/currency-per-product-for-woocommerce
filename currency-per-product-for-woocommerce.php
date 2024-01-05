@@ -113,6 +113,9 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 			// Set up localisation.
 			load_plugin_textdomain( 'currency-per-product-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 
+			// Loco transalate Mo file.
+			add_filter( 'load_textdomain_mofile', array( $this, 'load_textdomain_mofile' ), 10, 2 );
+
 			// Constants.
 			if ( ! defined( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0' ) ) {
 				define( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0', version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) );
@@ -141,7 +144,21 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 					add_action( 'admin_init', array( $this, 'version_updated' ) );
 				}
 			}
+		}
 
+		/**
+		 * Mo file for loco translate plugin - Issue-74.
+		 *
+		 * @param string $mofile mofile.
+		 * @param string $domain Domain.
+		 */
+		public function load_textdomain_mofile( $mofile, $domain ) {
+			if ( 'currency-per-product-for-woocommerce' === $domain ) {
+				if ( dirname( $mofile ) !== dirname( __FILE__ ) . '/langs' ) {
+					return false;
+				}
+			}
+			return $mofile;
 		}
 
 		/**
