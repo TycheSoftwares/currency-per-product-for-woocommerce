@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="Currency per Product for WooCommerce">
+  <domain name="currency-per-product-for-woocommerce">
+    <project name="Currency per Product for WooCommerce" slug="currency-per-product-for-woocommerce">
+      <source>
+        <directory>.</directory>
+      </source>
+      <target>
+        <directory>langs</directory>
+      </target>
+      <template>
+        <file>langs/currency-per-product-for-woocommerce.pot</file>
+      </template>
+    </project>
+  </domain>
+</bundle>
