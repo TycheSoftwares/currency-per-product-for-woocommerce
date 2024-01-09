@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bundle name="Currency per Product for WooCommerce Pro">
+<bundle name="Currency per Product for WooCommerce">
   <domain name="currency-per-product-for-woocommerce">
-    <project name="Currency per Product for WooCommerce Pro" slug="currency-per-product-for-woocommerce">
+    <project name="Currency per Product for WooCommerce" slug="currency-per-product-for-woocommerce">
       <source>
         <directory>.</directory>
       </source>
