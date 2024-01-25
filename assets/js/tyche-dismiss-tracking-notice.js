@@ -40,7 +40,8 @@ jQuery( document ).ready(
 										jQuery.post(
 											cpp_ts_dismiss_notice.ts_admin_url,
 											{
-												action: cpp_ts_dismiss_notice.ts_prefix_of_plugin + "_admin_notices"
+												action: cpp_ts_dismiss_notice.ts_prefix_of_plugin + "_tracker_dismiss_notice",
+												tracking_notice : cpp_ts_dismiss_notice.tracking_notice
 											},
 											function( response ) {}
 										);

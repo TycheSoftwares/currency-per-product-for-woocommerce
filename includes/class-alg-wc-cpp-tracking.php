@@ -57,6 +57,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 		 * Add admin notice script.
 		 */
 		public static function ts_admin_notices_scripts() {
+			$nonce = wp_create_nonce( 'tracking_notice' );
 			wp_enqueue_script(
 				'cpp_ts_dismiss_notice',
 				plugins_url() . '/currency-per-product-for-woocommerce/assets/js/tyche-dismiss-tracking-notice.js',
@@ -71,6 +72,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 				array(
 					'ts_prefix_of_plugin' => 'cpp_lite',
 					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
+					'tracking_notice'     => $nonce,
 				)
 			);
 		}
