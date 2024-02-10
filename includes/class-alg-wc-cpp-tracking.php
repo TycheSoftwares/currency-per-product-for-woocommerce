@@ -23,7 +23,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 		 * Construct.
 		 */
 		public function __construct() {
-			add_filter( 'ts_tracker_data', array( __CLASS__, 'cpp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
+			add_filter( 'cpp_lite_ts_tracker_data', array( __CLASS__, 'cpp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
 
 			add_action( 'admin_footer', array( __CLASS__, 'ts_admin_notices_scripts' ) );
 			add_action( 'cpp_lite_init_tracker_completed', array( __CLASS__, 'init_tracker_completed' ), 10 );
