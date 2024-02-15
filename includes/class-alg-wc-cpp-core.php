@@ -941,7 +941,11 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		 * @todo    [dev] maybe need to check for AJAX also
 		 */
 		public function is_cart_or_checkout() {
-			return ( ( function_exists( 'is_cart' ) && is_cart() ) || ( function_exists( 'is_checkout' ) && is_checkout() ) );
+			if ( $this->get_cart_checkout_currency() ) {
+				return true;
+			} else {
+				return ( ( function_exists( 'is_cart' ) && is_cart() ) || ( function_exists( 'is_checkout' ) && is_checkout() ) || has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) );
+			}
 		}
 
 		/**
