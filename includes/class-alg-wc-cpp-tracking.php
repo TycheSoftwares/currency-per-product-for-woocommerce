@@ -23,7 +23,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 		 * Construct.
 		 */
 		public function __construct() {
-			add_filter( 'ts_tracker_data', array( __CLASS__, 'cpp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
+			add_filter( 'cpp_lite_ts_tracker_data', array( __CLASS__, 'cpp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
 
 			add_action( 'admin_footer', array( __CLASS__, 'ts_admin_notices_scripts' ) );
 			add_action( 'cpp_lite_init_tracker_completed', array( __CLASS__, 'init_tracker_completed' ), 10 );
@@ -57,6 +57,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 		 * Add admin notice script.
 		 */
 		public static function ts_admin_notices_scripts() {
+			$nonce = wp_create_nonce( 'tracking_notice' );
 			wp_enqueue_script(
 				'cpp_ts_dismiss_notice',
 				plugins_url() . '/currency-per-product-for-woocommerce/assets/js/tyche-dismiss-tracking-notice.js',
@@ -71,6 +72,7 @@ if ( ! class_exists( 'Cpp_Tracking_Functions' ) ) :
 				array(
 					'ts_prefix_of_plugin' => 'cpp_lite',
 					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
+					'tracking_notice'     => $nonce,
 				)
 			);
 		}

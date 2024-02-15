@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * Tyche Softwares.
  *
@@ -7,7 +7,7 @@
  * @author      Tyche Softwares
  * @package     TycheSoftwares/PluginTracking
  * @category    Classes
- * @since       1.1
+ * @since       1.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -147,6 +147,10 @@ if ( ! class_exists( 'Tyche_Plugin_Tracking' ) ) {
 		 * Called when the dismiss icon is clicked on the notice.
 		 */
 		public function dismiss_notice() {
+			$nonce = $_POST['tracking_notice'];//phpcs:ignore
+			if ( ! wp_verify_nonce( $nonce, 'tracking_notice' ) ) {
+				return;
+			}
 			update_option( $this->plugin_short_name . '_allow_tracking', 'dismissed' );
 			$this->send_tracking_data();
 		}
@@ -290,7 +294,7 @@ if ( ! class_exists( 'Tyche_Plugin_Tracking' ) ) {
 			$memory = wc_let_to_num( WP_MEMORY_LIMIT );
 
 			if ( function_exists( 'memory_get_usage' ) ) {
-				$system_memory = wc_let_to_num( ini_get( 'memory_limit' ) );
+				$system_memory = wc_let_to_num( @ini_get( 'memory_limit' ) ); // phpcs:ignore
 				$memory        = max( $memory, $system_memory );
 			}
 
@@ -369,13 +373,11 @@ if ( ! class_exists( 'Tyche_Plugin_Tracking' ) ) {
 				}
 			}
 
-			$data['active_plugins']   = $active_plugins;
-			$data['inactive_plugins'] = $plugins;
+			$data['active_plugins']    = $active_plugins;
+			$data['inactive_plugins']  = $plugins;
+			$data['wc_plugin_version'] = WC()->version; // WooCommerce version.
 
-			// WooCommerce version.
-			$data['wc_plugin_version'] = WC()->version;
-
-			return apply_filters( 'ts_tracker_data', $data );
+			return apply_filters( $this->plugin_short_name . '_ts_tracker_data', $data );
 		}
 	}
 }
