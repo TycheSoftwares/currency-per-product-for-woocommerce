@@ -1,8 +1,8 @@
 === Currency per Product for WooCommerce ===
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
-Requires at least: 4.4
-Tested up to: 6.3.1
+Requires at least: 7.3
+Tested up to: 6.4.3
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -107,6 +107,12 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+= 1.7.0 - 20/02/2024 =
+* Fix - Fixed Cross Site Request Forgery (CSRF) vulnerability.
+* Fix - Compatible with Loco Translate Plugin.
+* Fix - Fixed the order received page to display the product's currency instead of the shop's default currency.
+* Fix - Fixed Converted price's is included when WooCommerce's 'Filter Products by Price' widget and in the "Sort by price" sorting settings are enabled. 
 
 = 1.6.0 - 05/09/2023 =
 * Fix - Fixed Compatibility with PHP 8.2.
