@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 6.4.3
+Tested up to: 6.5
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -107,6 +107,11 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+= 1.8.0 (2.04.2024) =
+* Tweak - Update compatibility with WordPress 6.5.
+* Tweak - Update compatibility with WooCommerce 8.7.
+* Fix - Fixed Cross Site Request Forgery (CSRF) vulnerability.
 
 = 1.7.0 - 20/02/2024 =
 * Fix - Fixed Cross Site Request Forgery (CSRF) vulnerability.
