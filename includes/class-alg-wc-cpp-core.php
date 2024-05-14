@@ -941,11 +941,62 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		 * @todo    [dev] maybe need to check for AJAX also
 		 */
 		public function is_cart_or_checkout() {
-			if ( $this->get_cart_checkout_currency() ) {
+			if ( ! $this->is_allowed_page() ) {
 				return true;
 			} else {
 				return ( ( function_exists( 'is_cart' ) && is_cart() ) || ( function_exists( 'is_checkout' ) && is_checkout() ) || has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) );
 			}
+		}
+
+		/**
+		 * This function checks if the current page is allowed for the currency change function.
+		 *
+		 * @param {boolean} $return_on_checkout Return on checkout.
+		 */
+		public function is_allowed_page( $return_on_checkout = true ) {
+			global $wp_query;
+
+			// Stop for all admin pages.
+			if ( is_admin() ) {
+				if ( get_post_type( get_the_ID() ) == 'product' ) {//phpcs:ignore
+					return true;
+				} else {
+					return;
+				}
+			}
+
+			if ( isset( $wp_query ) ) {
+				if ( isset( $wp_query->query_vars['post_type'] ) ) {
+					if ( 'product' === $wp_query->query_vars['post_type'] ) {
+						return true;
+					}
+				}
+
+				// Allow AJAX requests as we feel it won't chnage structure of the page.
+				if ( isset( $wp_query->query_vars['wc-ajax'] ) ) {
+					if ( 'get_refreshed_fragments' === $wp_query->query_vars['wc-ajax'] ) {
+						return true;
+					}
+				}
+			}
+
+			if ( is_cart() ) {
+				return true;
+			}
+
+			if ( $return_on_checkout ) {
+				if ( is_checkout() ) {
+					return true;
+				}
+			}
+			if ( is_product_category() ) {
+				return true;
+			}
+			if ( is_page() ) {
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
