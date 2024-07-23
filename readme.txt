@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 6.5
+Tested up to: 6.6
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -107,6 +107,9 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+= 1.9.0 (23.07.2024) =
+* Fix - When a product is added to the cart, other product currencies are converted to match the currency of the product in the cart.
 
 = 1.8.0 (2.04.2024) =
 * Tweak - Update compatibility with WordPress 6.5.
