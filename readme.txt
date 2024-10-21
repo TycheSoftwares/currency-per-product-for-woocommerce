@@ -2,9 +2,9 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 6.6
-Stable tag: trunk
-Requires PHP: 5.6
+Tested up to: 6.6.2
+Stable tag: 1.10.0
+Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
