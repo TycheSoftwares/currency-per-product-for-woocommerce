@@ -108,6 +108,10 @@ There is a number of scenarios that can be implemented with this plugin:
 
 == Changelog ==
 
+= 1.10.0 (22.10.2024) =
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
+* Fix - Uncaught type fatal error when clicking on the "View Cart" link.
+
 = 1.9.0 (23.07.2024) =
 * Fix - When a product is added to the cart, other product currencies are converted to match the currency of the product in the cart.
 
