@@ -742,7 +742,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 							return $this->saved_prices['cart_checkout'][ $product_id ];
 						}
 						$exchange_rate = alg_wc_cpp_get_currency_exchange_rate( $_product->alg_wc_cpp );
-						$return_price  = $price * $exchange_rate;
+						$return_price  = (float) $price * $exchange_rate;
 						if ( $do_save_prices ) {
 							$this->saved_prices['cart_checkout'][ $product_id ] = $return_price;
 						}
