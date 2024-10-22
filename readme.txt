@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
 Tested up to: 6.6.2
-Stable tag: trunk
-Requires PHP: 5.6
+Stable tag: 1.10.0
+Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,6 +115,10 @@ There is a number of scenarios that can be implemented with this plugin:
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
 == Changelog ==
+
+= 1.10.0 (22.10.2024) =
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
+* Fix - Uncaught type fatal error when clicking on the "View Cart" link.
 
 = 1.9.0 (23.07.2024) =
 * Fix - When a product is added to the cart, other product currencies are converted to match the currency of the product in the cart.
