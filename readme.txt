@@ -114,6 +114,66 @@ There is a number of scenarios that can be implemented with this plugin:
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
+== External Services ==
+
+=== Usage Tracking in Currency Per Product ===
+
+This plugin includes a feature that sends non-sensitive usage tracking data to Tyche Softwares. The data is used solely for improving the plugin and its features based on how it is being used across different stores. The tracking is **optional**, and you can choose to opt-out at any time.
+
+=== What is Tracked: ===
+
+When you enable the usage tracking feature, the following information is sent to Tyche Softwares:
+
+* Site URL
+* WordPress admin email
+* Theme
+* WordPress version
+* WordPress locale
+* WordPress debug mode
+* WordPress memory limit
+* Webserver software & version
+* PHP version
+* Some PHP Settings like maximum post size, maximum input vars, if suhosin is enabled, if you have cURL, SOAP and fSock enabled
+* MySQL version
+* WooCommerce version
+* List of activate plugins
+* List of inactive plugins
+* Plugin settings
+* Currencies setup in the plugin.
+* Exchange rates and how frequently are they updated along with other related settings for the same.
+* Number of products present on the site for each currency
+* Number of orders present on the site for each currency
+
+This data helps Tyche Softwares understand how the plugin is being used, which features are popular, and identify areas for improvement.
+
+=== How the Data is Used: ===
+
+The data collected is used to:
+
+* Improve the plugin’s functionality and performance.
+* Gain insights into which features are most commonly used.
+* Ensure compatibility with different versions of WordPress, WooCommerce, and PHP.
+
+=== Sensitive Data: ===
+
+The only sensitive information that is stored is the **admin email address**, which is kept to contact you regarding important updates or bug fixes related to the plugin. **No personal or business-critical data** is tracked or stored.
+
+=== How and When Data is Sent: ===
+
+The tracking data is sent automatically to our servers once you opt-in, and it will continue to be sent once a week thereafter.
+
+=== Opt-In and Opt-Out: ===
+
+* By default, usage tracking is enabled in the plugin settings.
+* You can **opt-out** at any time by resetting the usage tracking option, which is located under the **Settings** tab of the plugin.
+
+=== Link to Full Details: ===
+
+For more information about the usage tracking, please visit our documentation:  
+[Currency Per Product](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/)
+
+By using this plugin, you consent to the collection of the data mentioned above for the purpose of improving the plugin. If you do not wish to share this data, you can easily opt-out via the plugin settings.
+
 == Changelog ==
 
 = 1.10.0 (22.10.2024) =
