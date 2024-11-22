@@ -114,6 +114,9 @@ There is a number of scenarios that can be implemented with this plugin:
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
+== External Services ==
+This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/).
+
 == Changelog ==
 
 = 1.10.0 (22.10.2024) =

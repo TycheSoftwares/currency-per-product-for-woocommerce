@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-14 13:11+0530\n"
-"PO-Revision-Date: 2024-02-14 13:12+0500\n"
+"POT-Creation-Date: 2024-11-21 14:59+0530\n"
+"PO-Revision-Date: 2024-11-21 14:59+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Eazy Po 1.0.0.0\n"
 
-#: currency-per-product-for-woocommerce.php:157
+#: currency-per-product-for-woocommerce.php:168
 msgid "Settings"
 msgstr ""
 
-#: currency-per-product-for-woocommerce.php:160
+#: currency-per-product-for-woocommerce.php:171
 msgid "Unlock All"
 msgstr ""
 
@@ -90,19 +90,92 @@ msgstr ""
 msgid "Merge all"
 msgstr ""
 
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:172
+msgid "I only needed the plugin for a short period."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:178
+msgid "I found a better plugin."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:180
+msgid "Please let us have the plugin's name so that we can make improvements"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:184
+msgid "The plugin is not working."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:186
+msgid ""
+"Please share what was faulty with the plugin so that we may get the issue "
+"fixed."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:190
+msgid "The plugin is causing issues on my site"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:192
+msgid ""
+"We’re sorry! Please tell us about the issues so that we can get them fixed."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:196
+msgid "Some features I need are not working as per my expectations"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:198
+msgid "Please tell us about these features."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:202
+msgid "The plugin is not compatible with another plugin/theme"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:204
+msgid ""
+"We’re sorry! We would like you to tell us the plugin/theme so that we can "
+"work on the compatibility."
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:208
+msgid "Other"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:222
+msgid "If you have a moment, please let us know why you are deactivating:"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:233
+msgid "Skip & Deactivate"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:234
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:235
+msgid "Cancel"
+msgstr ""
+
+#: includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php:248
+msgid "Please select a reason for deactivation!"
+msgstr ""
+
 #: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:121
 msgid "Once in a Week"
 msgstr ""
 
-#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:252
+#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:255
 msgid "Want to help make "
 msgstr ""
 
-#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:255
+#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:258
 msgid "Allow"
 msgstr ""
 
-#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:256
+#: includes/component/plugin-tracking/class-tyche-plugin-tracking.php:259
 msgid "No thanks"
 msgstr ""
 
