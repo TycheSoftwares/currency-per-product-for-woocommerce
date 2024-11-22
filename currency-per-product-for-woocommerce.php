@@ -115,7 +115,7 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 		public function __construct() {
 
 			// Set up localisation.
-			load_plugin_textdomain( 'currency-per-product-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+			add_action( 'init', array( $this, 'cpp_load_text_domain' ) );
 
 			// Constants.
 			if ( ! defined( 'ALG_WC_CPP_IS_WC_VERSION_BELOW_3_0_0' ) ) {
@@ -204,6 +204,13 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 					)
 				);
 			}
+		}
+
+		/**
+		 * Added plugin text domain.
+		 */
+		public function cpp_load_text_domain() {
+			load_plugin_textdomain( 'currency-per-product-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 		}
 
 		/**
