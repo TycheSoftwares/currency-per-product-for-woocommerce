@@ -43,9 +43,16 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Advanced' ) ) {
 		 * @since   1.4.0
 		 */
 		public function __construct() {
-			$this->id   = 'advanced';
-			$this->desc = __( 'Advanced', 'currency-per-product-for-woocommerce' );
+			$this->id = 'advanced';
+			add_action( 'init', array( &$this, 'add_cpp_desc_advanced' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_cpp_desc_advanced() {
+			$this->desc = __( 'Advanced', 'currency-per-product-for-woocommerce' );
 		}
 
 		/**

@@ -43,9 +43,16 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_General' ) ) :
 		 * @since   1.0.0
 		 */
 		public function __construct() {
-			$this->id   = '';
-			$this->desc = __( 'General', 'currency-per-product-for-woocommerce' );
+			$this->id = '';
+			add_action( 'init', array( &$this, 'add_cpp_desc_general' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_cpp_desc_general() {
+			$this->desc = __( 'General', 'currency-per-product-for-woocommerce' );
 		}
 
 		/**

@@ -43,9 +43,16 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Behaviour' ) ) :
 		 * @since   1.4.0
 		 */
 		public function __construct() {
-			$this->id   = 'behaviour';
-			$this->desc = __( 'Behaviour', 'currency-per-product-for-woocommerce' );
+			$this->id = 'behaviour';
+			add_action( 'init', array( &$this, 'add_cpp_desc_behaviour' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_cpp_desc_behaviour() {
+			$this->desc = __( 'Behaviour', 'currency-per-product-for-woocommerce' );
 		}
 
 		/**
