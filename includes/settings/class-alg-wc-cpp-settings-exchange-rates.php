@@ -43,9 +43,16 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Exchange_Rates' ) ) :
 		 * @since   1.4.0
 		 */
 		public function __construct() {
-			$this->id   = 'exchange_rates';
-			$this->desc = __( 'Exchange Rates', 'currency-per-product-for-woocommerce' );
+			$this->id = 'exchange_rates';
+			add_action( 'init', array( &$this, 'add_cpp_desc_exchange_rate' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_cpp_desc_exchange_rate() {
+			$this->desc = __( 'Exchange Rates', 'currency-per-product-for-woocommerce' );
 		}
 
 		/**
