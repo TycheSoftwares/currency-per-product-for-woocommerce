@@ -1,0 +1,104 @@
+*** Currency per Product for WooCommerce ***
+2024-11-22 - version 1.11.0 =
+* Fix - Translation loading was triggered too early, causing errors when changing the site language in WordPress 6.7.
+* Tweak - Removed the call to our tracking server to fetch the deactivation reasons and added them in the plugin itself.
+
+2024-10-22 - version 1.10.0 =
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
+* Fix - Uncaught type fatal error when clicking on the "View Cart" link.
+
+2024-07-23 - version 1.9.0 =
+* Fix - When a product is added to the cart, other product currencies are converted to match the currency of the product in the cart.
+
+2024-04-02 - version 1.8.0 =
+* Tweak - Update compatibility with WordPress 6.5.
+* Tweak - Update compatibility with WooCommerce 8.7.
+* Fix - Fixed Cross Site Request Forgery (CSRF) vulnerability.
+
+2024-02-20 - version 1.7.0 =
+* Fix - Fixed Cross Site Request Forgery (CSRF) vulnerability.
+* Fix - Compatible with Loco Translate Plugin.
+* Fix - Fixed the order received page to display the product's currency instead of the shop's default currency.
+* Fix - Fixed Converted prices are included when WooCommerce's 'Filter Products by Price' widget and in the "Sort by price" sorting settings are enabled. 
+
+2023-09-05 - version 1.6.0 =
+* Fix - Fixed Compatibility with PHP 8.2.
+* Fix - When 'Quick Edit' option is used then the set price in other currency changes to the base currency exchange price for the product.
+* Fix - The original price is re-calculating when we use the Quick Edit function..
+* Fix - The shipping cost is not calculating correctly in the Cart when increasing/decreasing the product quantity in the cart.
+* Fix - The currency symbol does not display correctly when we manually add subscription.
+
+2022-11-29 - version 1.5.0 =
+* Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
+
+2021-04-20 - version 1.4.8 =
+* Fix - On creating the order manually from the backend it was showing the default shop currency instead of showing the product currency. This is fixed now.
+* Fix - The currency symbol in the Mini cart was coming wrong. This is fixed now.
+
+2020-10-08 - version 1.4.7 =
+* Updated compatibility with WordPress 5.5
+* Updated compatibility with WooCommerce 4.5
+* Fix - Cart & Checkout behaviour option when set to 'Convert to last product currency' & 'Convert to first product currency' amount was not updated. This is fixed now.
+* Fix - Currency was not displayed for the selected categories product when 'Currency per product categories' or 'Currency per product tags' setting was enabled. This is fixed now.
+
+2020-03-20 - version 1.4.6 =
+* Update compatibility with WooCommerce 4.0.0.
+
+2019-03-25 - version 1.4.5 =
+* Fix - Prices for the Bookable products from WooCommerce Bookings plugin were not converted to the default currency when 'Convert to Shop default currency (and set cart and checkout behavior separately)' option is selected for Shop Behaviour setting. This is fixed now. 
+* Fix - The prices for the selected currency for the bookable products were shown as 0 on the Shop page when 'Add original price in shop' option is checked. This is fixed now. 
+* Fix - A fatal error was shown on the Shop page for Variable products when visited as Wholesale customer added from Wholesale Customers For Woo plugin. This is fixed now. 
+
+2018-11-16 - version 1.4.4 =
+* Version Changed. 
+
+2018-10-31 - version 1.4.3 =
+* Compatibility with WooCommerce 3.5.0 tested.
+
+2018-09-23 - version 1.4.2 =
+* Fix - Behaviour - Add original price in shop - Variable products fixed.
+
+2018-09-19 - version 1.4.1 =
+* Feature - General - "Custom currency symbol" options added.
+* Fix - Variations currency in backend fixed (in case if "Convert to shop default currency (including cart and checkout)" is selected).
+* Fix - Exchange Rates - "ECB" and "TCMB" fixed on servers with allow_url_fopen option disabled.
+* Dev - Minor code refactoring.
+
+2018-08-13 - version 1.4.0 =
+* Feature - Behaviour - Shop Behaviour Options - "Add original price in shop" options added.
+* Feature - Advanced - "Sorting by converted price" option added ("Sort by price" sorting).
+* Feature - Advanced - "Filtering by converted price" option added ("Filter Products by Price" widget).
+* Dev - Exchange Rates - "Yahoo" server removed (as it's discontinued).
+* Dev - Exchange Rates - Step decreased (to 12 decimals) in admin settings.
+* Dev - Raw input is now allowed in some plugin options.
+* Dev - Admin settings divided in separate sections, restyled and descriptions updated.
+* Dev - Major code refactoring; plugin folders structure changed; version_updated() function added.
+
+2018-08-09 - version 1.3.0 =
+* Fix - Additional checks added to get_currency_exchange_rate() function to prevent division by zero and "non-numeric value encountered" notices.
+* Dev - Advanced Options - "Save products prices" option added.
+* Dev - Exchange rates updates - "Free Currency Converter API (free.currencyconverterapi.com)" server added.
+* Dev - Exchange rates updates - "European Central Bank (ECB)" server set as the default option.
+* Dev - Admin settings restyled.
+* Dev - Code refactoring.
+
+2018-06-19 - version 1.2.1 =
+* Dev - Core - change_currency_code() function rewritten.
+* Dev - "WC tested up to" added to plugin header.
+* Dev - Plugin URI updated to wpfactory.com.
+* Dev - Admin settings descriptions updated.
+
+2017-12-06 - version 1.2.0 =
+* Dev - WooCommerce v3.2.0 compatibility - Admin settings select type options fixed.
+* Dev - Yahoo exchange rates server URL updated.
+* Dev - Admin settings - Minor restyling.
+* Dev - includes() - settings are saved as object property now.
+* Dev - POT file added.
+
+2017-09-27 - version 1.1.0 =
+* Dev - "Shop Behaviour" option added.
+* Dev - Advanced Options - "Fix mini cart" option added.
+* Dev - Advanced Options - "Currency Reports" option added.
+
+2017-08-20 - version 1.0.0 =
+* Initial Release.

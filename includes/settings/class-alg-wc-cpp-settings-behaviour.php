@@ -156,7 +156,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Behaviour' ) ) :
 
 			return array_merge( $shop_settings, $cart_settings );
 		}
-
 	}
 
 endif;

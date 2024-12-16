@@ -10,7 +10,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! class_exists( 'Alg_WC_CPP_Currency_Reports' ) ) :
@@ -74,10 +74,10 @@ if ( ! class_exists( 'Alg_WC_CPP_Currency_Reports' ) ) :
 		 * @param object $wp_admin_bar WP Admin bar object.
 		 */
 		public function add_reports_currency_to_admin_bar( $wp_admin_bar ) {
-			if ( isset( $_GET['page'] ) && 'wc-reports' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) {
+			if ( isset( $_GET['page'] ) && 'wc-reports' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) { // phpcs:ignore
 				// Parent.
 				$base_currency = get_option( 'woocommerce_currency' );
-				$_current_code = isset( $_GET['currency'] ) ? sanitize_text_field( wp_unslash( $_GET['currency'] ) ) : $base_currency;
+				$_current_code = isset( $_GET['currency'] ) ? sanitize_text_field( wp_unslash( $_GET['currency'] ) ) : $base_currency; // phpcs:ignore
 				$parent        = 'alg_wc_cpp_reports_currency_select';
 				$args          = array(
 					'parent' => false,
@@ -123,8 +123,8 @@ if ( ! class_exists( 'Alg_WC_CPP_Currency_Reports' ) ) :
 		 * @param string $currency Currency.
 		 */
 		public function change_reports_currency_code( $currency ) {
-			if ( isset( $_GET['page'] ) && 'wc-reports' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) && isset( $_GET['currency'] ) ) {
-				return ( 'merge' === $_GET['currency'] ? '' : sanitize_text_field( wp_unslash( $_GET['currency'] ) ) );
+			if ( isset( $_GET['page'] ) && 'wc-reports' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) && isset( $_GET['currency'] ) ) { // phpcs:ignore
+				return ( 'merge' === $_GET['currency'] ? '' : sanitize_text_field( wp_unslash( $_GET['currency'] ) ) ); // phpcs:ignore
 			}
 			return $currency;
 		}
@@ -138,13 +138,13 @@ if ( ! class_exists( 'Alg_WC_CPP_Currency_Reports' ) ) :
 		 * @param array $args Arguments array.
 		 */
 		public function filter_reports( $args ) {
-			if ( isset( $_GET['currency'] ) && 'merge' === $_GET['currency'] ) {
+			if ( isset( $_GET['currency'] ) && 'merge' === $_GET['currency'] ) { // phpcs:ignore
 				return $args;
 			}
 			$args['where_meta'] = array(
 				array(
-					'meta_key'   => '_order_currency',
-					'meta_value' => ( isset( $_GET['currency'] ) ? sanitize_text_field( wp_unslash( $_GET['currency'] ) ) : get_option( 'woocommerce_currency' ) ),
+					'meta_key'   => '_order_currency', // phpcs:ignore
+					'meta_value' => ( isset( $_GET['currency'] ) ? sanitize_text_field( wp_unslash( $_GET['currency'] ) ) : get_option( 'woocommerce_currency' ) ), // phpcs:ignore
 					'operator'   => '=',
 				),
 			);

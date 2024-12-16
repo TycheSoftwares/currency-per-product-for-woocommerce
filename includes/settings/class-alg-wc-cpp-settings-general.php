@@ -123,7 +123,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_General' ) ) :
 
 			return array_merge( $main_settings, $general_settings );
 		}
-
 	}
 
 endif;
