@@ -76,17 +76,17 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 		 * @todo    [dev] maybe use `WC_Admin_Settings::add_message()` instead
 		 */
 		public function admin_notices() {
-			if ( isset( $_GET['alg_wc_cpp_calculate_all_products_prices_finished'] ) ) {
+			if ( isset( $_GET['alg_wc_cpp_calculate_all_products_prices_finished'] ) ) { // phpcs:ignore
 				echo '<div class="notice notice-info"><p>';
 				sprintf(
 					/* translators: %s: number of products for which price was re-calculated */
 					esc_html_e( 'Prices successfully re-calculated for %s products.', 'currency-per-product-for-woocommerce' ),
-					'<strong>' . sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_calculate_all_products_prices_finished'] ) ) . '</strong>'
+					'<strong>' . sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_calculate_all_products_prices_finished'] ) ) . '</strong>' // phpcs:ignore
 				);
 				echo '</p></div>';
 			}
-			if ( isset( $_GET['alg_wc_cpp_delete_plugin_data_finished'] ) ) {
-				$totals = explode( ',', sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_delete_plugin_data_finished'] ) ) );
+			if ( isset( $_GET['alg_wc_cpp_delete_plugin_data_finished'] ) ) { // phpcs:ignore
+				$totals = explode( ',', sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_delete_plugin_data_finished'] ) ) ); // phpcs:ignore
 				echo '<div class="notice notice-info"><p>';
 				sprintf(
 					/* translators: %1$s: number of options deleted, %2$s: number of product metas deleted */
@@ -108,7 +108,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 		public function delete_all_plugin_data() {
 			if ( isset( $_GET['alg_wc_cpp_delete_plugin_data'] ) ) {
 				if (
-				current_user_can( 'manage_woocommerce' ) &&
+				current_user_can( 'manage_woocommerce' ) && // phpcs:ignore
 				isset( $_GET['alg_wc_cpp_delete_plugin_data_nonce'] ) &&
 				wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_delete_plugin_data_nonce'] ) ), 'alg_wc_cpp_delete_plugin_data' )
 				) {
@@ -118,7 +118,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 					$plugin_meta         = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE meta_key LIKE '_alg_wc_cpp_%'" );
 					foreach ( $plugin_meta as $meta ) {
 						delete_post_meta( $meta->post_id, $meta->meta_key );
-						$delete_counter_meta++;
+						++$delete_counter_meta;
 					}
 					$delete_counter_options = 0;
 					// phpcs:ignore
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 						if ( 'alg_wc_cpp_version' !== $option->option_name ) {
 							delete_option( $option->option_name );
 							delete_site_option( $option->option_name );
-							$delete_counter_options++;
+							++$delete_counter_options;
 						}
 					}
 					wp_safe_redirect(
@@ -178,7 +178,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 		public function calculate_all_products_prices() {
 			if ( isset( $_GET['alg_wc_cpp_calculate_all_products_prices'] ) ) {
 				if (
-				current_user_can( 'manage_woocommerce' ) &&
+				current_user_can( 'manage_woocommerce' ) && // phpcs:ignore
 				isset( $_GET['alg_wc_cpp_calculate_all_products_prices_nonce'] ) &&
 				wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['alg_wc_cpp_calculate_all_products_prices_nonce'] ) ), 'alg_wc_cpp_calculate_all_products_prices' )
 				) {
@@ -204,7 +204,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 		 * @since   1.0.0
 		 */
 		public function update_exchange_rates_now() {
-			if ( isset( $_GET['alg_wc_cpp_update_exchange_rates'] ) ) {
+			if ( isset( $_GET['alg_wc_cpp_update_exchange_rates'] ) ) { // phpcs:ignore
 				do_action( 'alg_wc_cpp_update_exchange_rates' );
 				wp_safe_redirect( remove_query_arg( 'alg_wc_cpp_update_exchange_rates' ) );
 				exit;

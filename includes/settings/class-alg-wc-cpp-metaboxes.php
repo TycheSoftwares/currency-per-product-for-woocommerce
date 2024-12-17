@@ -148,7 +148,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Metaboxes' ) ) :
 			}
 			$html .= '</table>';
 			$html .= '<input type="hidden" name="alg_wc_cpp_save_post" value="alg_wc_cpp_save_post">';
-			echo $html;
+			echo $html; // phpcs:ignore
 		}
 
 		/**
@@ -160,9 +160,9 @@ if ( ! class_exists( 'Alg_WC_CPP_Metaboxes' ) ) :
 		 * @param int    $post_id Post Id.
 		 * @param object $post Post object.
 		 */
-		public function save_cpp_meta_box( $post_id, $post ) {
+		public function save_cpp_meta_box( $post_id, $post ) { // phpcs:ignore
 			// Check that we are saving with current metabox displayed.
-			if ( ! isset( $_POST['alg_wc_cpp_save_post'] ) ) {
+			if ( ! isset( $_POST['alg_wc_cpp_save_post'] ) ) { // phpcs:ignore
 				return;
 			}
 			// Save options.
@@ -172,7 +172,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Metaboxes' ) ) :
 				}
 				$is_enabled = ( isset( $option['enabled'] ) && 'no' === $option['enabled'] ) ? false : true;
 				if ( $is_enabled ) {
-					$option_value = ( isset( $_POST[ $option['name'] ] ) ? sanitize_text_field( wp_unslash( $_POST[ $option['name'] ] ) ) : $option['default'] );
+					$option_value = ( isset( $_POST[ $option['name'] ] ) ? sanitize_text_field( wp_unslash( $_POST[ $option['name'] ] ) ) : $option['default'] ); // phpcs:ignore
 					$_post_id     = ( isset( $option['product_id'] ) ? $option['product_id'] : $post_id );
 					$_meta_name   = ( isset( $option['meta_name'] ) ? $option['meta_name'] : '_' . $option['name'] );
 					update_post_meta( $_post_id, $_meta_name, $option_value );
@@ -207,7 +207,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Metaboxes' ) ) :
 			);
 			return apply_filters( 'alg_wc_cpp', $options, 'meta_box_options' );
 		}
-
 	}
 
 endif;

@@ -136,12 +136,12 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Exchange_Rates' ) ) :
 					'custom_attributes' => apply_filters( 'alg_wc_cpp', array( 'disabled' => 'disabled' ), 'settings' ),
 				),
 				array(
-					'title'   => __( 'Update rate', 'currency-per-product-for-woocommerce' ),
-					'id'      => 'alg_wc_cpp_exchange_rate_update_rate',
-					'default' => 'daily',
-					'type'    => 'select',
-					'class'   => 'wc-enhanced-select',
-					'options' => array(
+					'title'             => __( 'Update rate', 'currency-per-product-for-woocommerce' ),
+					'id'                => 'alg_wc_cpp_exchange_rate_update_rate',
+					'default'           => 'daily',
+					'type'              => 'select',
+					'class'             => 'wc-enhanced-select',
+					'options'           => array(
 						'hourly'     => __( 'Update Hourly', 'currency-per-product-for-woocommerce' ),
 						'twicedaily' => __( 'Update Twice Daily', 'currency-per-product-for-woocommerce' ),
 						'daily'      => __( 'Update Daily', 'currency-per-product-for-woocommerce' ),
@@ -161,12 +161,12 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Exchange_Rates' ) ) :
 					'custom_attributes' => apply_filters( 'alg_wc_cpp', array( 'disabled' => 'disabled' ), 'settings' ),
 				),
 				array(
-					'title'   => __( 'Update server', 'currency-per-product-for-woocommerce' ),
-					'id'      => 'alg_wc_cpp_currency_exchange_rates_server',
-					'default' => 'ecb',
-					'type'    => 'select',
-					'class'   => 'wc-enhanced-select',
-					'options' => alg_wc_cpp_get_currency_exchange_rate_servers(),
+					'title'             => __( 'Update server', 'currency-per-product-for-woocommerce' ),
+					'id'                => 'alg_wc_cpp_currency_exchange_rates_server',
+					'default'           => 'ecb',
+					'type'              => 'select',
+					'class'             => 'wc-enhanced-select',
+					'options'           => alg_wc_cpp_get_currency_exchange_rate_servers(),
 					'desc'              => apply_filters(
 						'alg_wc_cpp',
 						'<p>' . sprintf(
@@ -237,7 +237,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Exchange_Rates' ) ) :
 
 			return array_merge( $exchange_rate_update_settings, $exchange_rate_settings );
 		}
-
 	}
 
 endif;

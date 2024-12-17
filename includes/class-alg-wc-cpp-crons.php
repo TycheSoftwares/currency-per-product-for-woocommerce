@@ -97,14 +97,13 @@ if ( ! class_exists( 'Alg_WC_CPP_Crons' ) ) :
 		 *
 		 * @param string $interval Interval.
 		 */
-		public function update_exchange_rates( $interval ) {
+		public function update_exchange_rates( $interval ) { // phpcs:ignore
 			alg_wc_cpp_update_exchange_rates();
 			if ( 'yes' === get_option( 'alg_wc_cpp_sort_by_converted_price', 'no' ) || 'yes' === get_option( 'alg_wc_cpp_filter_by_converted_price', 'no' ) ) {
 				// "Sort by price" sorting and "Filter Products by Price" widget.
 				alg_wc_cpp_calculate_all_products_prices();
 			}
 		}
-
 	}
 
 endif;

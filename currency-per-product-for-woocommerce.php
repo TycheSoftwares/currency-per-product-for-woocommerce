@@ -145,7 +145,6 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 					add_action( 'admin_init', array( $this, 'version_updated' ) );
 				}
 			}
-
 		}
 
 		/**
@@ -279,7 +278,6 @@ if ( ! class_exists( 'Alg_WC_CPP' ) ) :
 				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'orders_cache', 'currency-per-product-for-woocommerce/currency-per-product-for-woocommerce.php', true );
 			}
 		}
-
 	}
 
 endif;
@@ -292,7 +290,7 @@ if ( ! function_exists( 'alg_wc_cpp' ) ) {
 	 * @since   1.0.0
 	 * @return  Alg_WC_CPP
 	 */
-	function alg_wc_cpp() {
+	function alg_wc_cpp() { // phpcs:ignore
 		return Alg_WC_CPP::instance();
 	}
 }

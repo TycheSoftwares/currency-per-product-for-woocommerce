@@ -45,7 +45,6 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Section' ) ) :
 			$sections[ $this->id ] = $this->desc;
 			return $sections;
 		}
-
 	}
 
 endif;

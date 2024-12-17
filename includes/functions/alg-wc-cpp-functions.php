@@ -105,7 +105,7 @@ if ( ! function_exists( 'alg_wc_cpp_get_terms' ) ) {
 		} else {
 			$_taxonomy = $args['taxonomy'];
 			unset( $args['taxonomy'] );
-			$_terms = get_terms( $_taxonomy, $args );
+			$_terms = get_terms( $_taxonomy, $args ); // phpcs:ignore
 		}
 		$_terms_options = array();
 		if ( ! empty( $_terms ) && ! is_wp_error( $_terms ) ) {
@@ -119,10 +119,14 @@ if ( ! function_exists( 'alg_wc_cpp_get_terms' ) ) {
 
 if ( ! function_exists( 'alg_wc_cpp_get_product_terms' ) ) {
 	/**
-	 * alg_wc_cpp_get_product_terms.
+	 * Function to get the term ids from product id.
 	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
+	 * @param int    $product_id Product ID.
+	 * @param string $taxonomy Product taxonomies.
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @return array $_terms_id
 	 */
 	function alg_wc_cpp_get_product_terms( $product_id, $taxonomy ) {
 		if ( ! $product_id ) {
@@ -132,7 +136,7 @@ if ( ! function_exists( 'alg_wc_cpp_get_product_terms' ) ) {
 		$_terms = get_the_terms( $product_id, $taxonomy );
 
 		$_terms_id = array();
-		if ( ! empty( $_terms ) && ! is_wp_error( $_terms ) ){
+		if ( ! empty( $_terms ) && ! is_wp_error( $_terms ) ) {
 			foreach ( $_terms as $_term ) {
 				array_push( $_terms_id, $_term->term_id );
 			}
@@ -266,7 +270,7 @@ if ( ! function_exists( 'alg_wc_cpp_calculate_all_products_prices' ) ) {
 			}
 			foreach ( $loop->posts as $product_id ) {
 				alg_wc_cpp_calculate_and_update_product_price( $product_id, $shop_currency );
-				$total_products++;
+				++$total_products;
 			}
 			$offset += $block_size;
 		}

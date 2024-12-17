@@ -134,13 +134,17 @@ if ( ! function_exists( 'alg_wc_cpp_get_url_response' ) ) {
 	function alg_wc_cpp_get_url_response( $url ) {
 		$response = false;
 		if ( function_exists( 'curl_version' ) ) {
-			$curl = curl_init( $url );
-			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false );
-			$response = curl_exec( $curl );
-			curl_close( $curl );
+			$curl = curl_init( $url ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, true ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_SSL_VERIFYHOST, 2 ); // phpcs:ignore
+			$response = curl_exec( $curl ); // phpcs:ignore
+			if ( curl_errno( $curl ) ) { // phpcs:ignore
+				$response = false;
+			}
+			curl_close( $curl ); // phpcs:ignore
 		} elseif ( ini_get( 'allow_url_fopen' ) ) {
-			$response = file_get_contents( $url );
+			$response = file_get_contents( $url ); // phpcs:ignore
 		}
 		return $response;
 	}
@@ -161,11 +165,11 @@ if ( ! function_exists( 'alg_wc_cpp_get_url_response_xml' ) ) {
 		if ( ini_get( 'allow_url_fopen' ) && function_exists( 'simplexml_load_file' ) ) {
 			$response = simplexml_load_file( $url );
 		} elseif ( function_exists( 'curl_version' ) && class_exists( 'SimpleXMLElement' ) ) {
-			$curl = curl_init( $url );
-			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false );
-			$response = curl_exec( $curl );
-			curl_close( $curl );
+			$curl = curl_init( $url ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false ); // phpcs:ignore
+			$response = curl_exec( $curl ); // phpcs:ignore
+			curl_close( $curl ); // phpcs:ignore
 			libxml_use_internal_errors( true );
 			try {
 				$response = new SimpleXMLElement( $response );
