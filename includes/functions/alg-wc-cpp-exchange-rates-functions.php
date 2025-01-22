@@ -167,14 +167,20 @@ if ( ! function_exists( 'alg_wc_cpp_get_url_response_xml' ) ) {
 		} elseif ( function_exists( 'curl_version' ) && class_exists( 'SimpleXMLElement' ) ) {
 			$curl = curl_init( $url ); // phpcs:ignore
 			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 ); // phpcs:ignore
-			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, true ); // phpcs:ignore
+			curl_setopt( $curl, CURLOPT_SSL_VERIFYHOST, 2 ); // phpcs:ignore
 			$response = curl_exec( $curl ); // phpcs:ignore
+			if ( curl_errno( $curl ) ) { // phpcs:ignore
+				$response = false;
+			}
 			curl_close( $curl ); // phpcs:ignore
-			libxml_use_internal_errors( true );
-			try {
-				$response = new SimpleXMLElement( $response );
-			} catch ( Exception $e ) {
-				return false;
+			if ( false !== $response ) {
+				libxml_use_internal_errors( true );
+				try {
+					$response = new SimpleXMLElement( $response );
+				} catch ( Exception $e ) {
+					return false;
+				}
 			}
 		}
 		return $response;
