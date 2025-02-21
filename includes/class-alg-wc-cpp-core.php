@@ -78,6 +78,9 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 					$this->custom_currency_symbol_template = get_option( 'alg_wc_cpp_custom_currency_symbol_template', '%currency_code%%currency_symbol%' );
 				}
 
+				// Currency for the products on the custom page created using the Featured Products block.
+				add_filter( 'woocommerce_get_price_html', array( $this, 'cpp_change_currency_for_featured_products_block' ), PHP_INT_MAX, 2 );
+
 				// Add to cart.
 				add_filter( 'woocommerce_add_cart_item_data', array( $this, 'add_cart_item_data' ), PHP_INT_MAX, 3 );
 				add_filter( 'woocommerce_add_cart_item', array( $this, 'add_cart_item' ), PHP_INT_MAX, 2 );
@@ -814,6 +817,66 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 				$price = $price * $exchange_rate;
 			}
 			return $price;
+		}
+
+		/**
+		 * For showing correct currency on custom page for the products shown using Woo blocks.
+		 *
+		 * @param string $price_html HTML Price.
+		 * @param object $product Product object.
+		 */
+		public function cpp_change_currency_for_featured_products_block( $price_html, $product ) {
+			if ( 'show_in_different' === get_option( 'alg_wc_cpp_shop_behaviour', 'show_in_different' ) ) {
+				if ( ! $this->is_allowed_page() || ( 'page' === get_post_type() && is_page() && 'job_package' === $product->get_type() ) ) {
+					if ( is_user_logged_in() ) {
+						$vendor_id = get_current_user_id();
+						$page_id   = get_queried_object_id();
+						$seller    = get_post_field( 'post_author', $page_id );
+						if ( function_exists( 'dokan' ) ) {
+							$vendor = dokan()->vendor->get( $seller );
+							if ( ! empty( $vendor ) ) {
+								return $price_html;
+							}
+						}
+					}
+					$product_id = alg_wc_cpp_get_product_id_or_variation_parent_id( $product );
+					if ( $product_id && 'product' === get_post_type( $product_id ) ) {
+						$cpp_currency = $this->get_product_currency( $product_id );
+						if ( '' !== $cpp_currency ) {
+							if ( 'variable' === $product->get_type() ) {
+								$prices = array( $product->get_variation_price( 'min', true ), $product->get_variation_price( 'max', true ) );
+								if ( ! empty( $prices ) ) {
+									$min_price = isset( $prices[0] ) ? $prices[0] : 0;
+									$max_price = isset( $prices[1] ) ? $prices[1] : 0;
+
+									if ( $min_price !== $max_price ) {
+										$price = wc_format_price_range( wc_price( $min_price, array( 'currency' => $cpp_currency ) ), wc_price( $max_price, array( 'currency' => $cpp_currency ) ) );
+										return $price;
+									} elseif ( $product->is_on_sale() && $min_price === $max_price ) {
+										$price = wc_format_sale_price( wc_price( $max_price, array( 'currency' => $cpp_currency ) ), wc_price( $min_price, array( 'currency' => $cpp_currency ) ) );
+										return $price;
+									} else {
+										$price = wc_price( $min_price, array( 'currency' => $cpp_currency ) );
+										return $price;
+									}
+								}
+							} else {
+								$regular_price = $product->get_regular_price();
+								$sale_price    = $product->get_sale_price();
+								if ( '' !== $sale_price && $sale_price < $regular_price ) {
+									$price = wc_format_sale_price( wc_price( $regular_price, array( 'currency' => $cpp_currency ) ), wc_price( $sale_price, array( 'currency' => $cpp_currency ) ) );
+									return $price;
+								} else {
+									$price = wc_price( $regular_price, array( 'currency' => $cpp_currency ) );
+									return $price;
+								}
+							}
+						}
+					}
+					return $price_html;
+				}
+			}
+			return $price_html;
 		}
 
 		/**
