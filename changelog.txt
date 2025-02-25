@@ -1,4 +1,9 @@
 *** Currency per Product for WooCommerce ***
+2025-02-25 - version 1.12.0 =
+* Fix - Product-specific currency was not displayed correctly on the Product Attribute page; it now reflects the selected currency instead of the shop's default currency.
+* Fix - PHP deprecated warning related to the dynamic property WC_Product_Simple::$alg_wc_cpp when adding a product to the cart.
+* Fix - Resolved all PHPCS warnings and aligned the code with WordPress Coding Standards to enhance quality and maintainability.
+
 2024-11-22 - version 1.11.0 =
 * Fix - Translation loading was triggered too early, causing errors when changing the site language in WordPress 6.7.
 * Tweak - Removed the call to our tracking server to fetch the deactivation reasons and added them in the plugin itself.
