@@ -891,7 +891,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		 */
 		public function get_cart_item_from_session( $item, $values, $key ) {
 			if ( array_key_exists( 'alg_wc_cpp', $values ) ) {
-				$item['data']->update_meta_data( '_alg_wc_cpp', $values['alg_wc_cpp'] ); // Store the value in product meta instead of a dynamic property
+				$item['data']->alg_wc_cpp = $values['alg_wc_cpp'];
 			}
 			return $item;
 		}
@@ -925,7 +925,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 		 */
 		public function add_cart_item( $cart_item_data, $cart_item_key ) {
 			if ( isset( $cart_item_data['alg_wc_cpp'] ) ) {
-				$cart_item_data['data']->update_meta_data( '_alg_wc_cpp', $cart_item_data['alg_wc_cpp'] );
+				$cart_item_data['data']->alg_wc_cpp = $cart_item_data['alg_wc_cpp'];
 			}
 			return $cart_item_data;
 		}
