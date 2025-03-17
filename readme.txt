@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
 Tested up to: 6.7.2
-Stable tag: 1.12.0
+Stable tag: 1.12.1
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -118,6 +118,9 @@ There is a number of scenarios that can be implemented with this plugin:
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/).
 
 == Changelog ==
+
+= 1.12.1 (13.03.2025) =
+* Fix - Product price conversion on the Cart and Checkout pages, ensuring prices convert correctly to the selected currency.
 
 = 1.12.0 (25.02.2025) =
 * Fix - Product-specific currency was not displayed correctly on the Product Attribute page; it now reflects the selected currency instead of the shop's default currency.
