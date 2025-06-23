@@ -770,7 +770,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 						$shop_currency = get_option( 'woocommerce_currency' );
 
 						$_currency = $this->get_cart_checkout_currency();
-						if ( false !== $_currency && ! isset( $_product->alg_wc_cpp ) && $_currency !== $shop_currency ) {
+						if ( false !== $_currency && ! isset( $_product->alg_wc_cpp ) && $_currency !== $shop_currency && $this->is_cart_or_checkout() ) {
 
 							if ( $do_save_prices && isset( $this->saved_prices['shop'][ $product_id ] ) ) {
 								return $this->saved_prices['shop'][ $product_id ];
