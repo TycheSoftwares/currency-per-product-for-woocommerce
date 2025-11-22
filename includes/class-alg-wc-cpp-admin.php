@@ -139,7 +139,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 					);
 					exit;
 				} else {
-					wp_die( esc_html_e( 'User role or nonce is not valid!', 'currency-per-product-for-woocommerce' ) );
+					wp_die( esc_html__( 'User role or nonce is not valid!', 'currency-per-product-for-woocommerce' ) );
 				}
 			}
 		}
@@ -192,7 +192,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Admin' ) ) :
 					);
 					exit;
 				} else {
-					wp_die( esc_html_e( 'User role or nonce is not valid!', 'currency-per-product-for-woocommerce' ) );
+					wp_die( esc_html__( 'User role or nonce is not valid!', 'currency-per-product-for-woocommerce' ) );
 				}
 			}
 		}
