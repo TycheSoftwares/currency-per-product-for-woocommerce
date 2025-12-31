@@ -55,6 +55,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 			// Admin.
 			if ( is_admin() ) {
 				require_once 'class-alg-wc-cpp-admin.php';
+				add_filter( 'woocommerce_product_quick_edit_save', array( $this, 'cpp_calculate_product_price_quick_edit' ), PHP_INT_MAX, 1 );
 			}
 
 			if ( 'yes' === get_option( 'alg_wc_cpp_enabled', 'yes' ) ) {
@@ -1141,6 +1142,36 @@ if ( ! class_exists( 'Alg_WC_CPP_Core' ) ) :
 			}
 
 			return $item;
+		}
+
+		/**
+		 * Calculate product price in quick edit.
+		 *
+		 * @version 1.4.0
+		 * @since   1.4.0
+		 *
+		 * @param object $product Product object.
+		 */
+		public function cpp_calculate_product_price_quick_edit( $product ) {
+			$product_id = $product->get_id();
+			// If product currency is different than shop currency.
+			$product_currency = get_post_meta( $product_id, '_alg_wc_cpp_currency', true );
+			$shop_currency    = get_woocommerce_currency();
+			if ( '' !== $product_currency && $shop_currency !== $product_currency ) {
+				$base_price = get_post_meta( $product_id, '_price', true );
+				$prd_price  = round( $base_price / alg_wc_cpp_get_currency_exchange_rate( $product_currency ), 2 );
+				$product->set_price( $prd_price );
+				update_post_meta( $product_id, '_alg_wc_cpp_converted_price', $base_price );
+				$regular_price     = get_post_meta( $product_id, '_regular_price', true );
+				$prd_regular_price = round( $regular_price / alg_wc_cpp_get_currency_exchange_rate( $product_currency ), 2 );
+				$product->set_regular_price( $prd_regular_price );
+				$sale_price = get_post_meta( $product_id, '_sale_price', true );
+				if ( $sale_price > 0 ) {
+					$prd_sale_price = round( $sale_price / alg_wc_cpp_get_currency_exchange_rate( $product_currency ), 2 );
+					$product->sale_price( $prd_sale_price );
+				}
+				$product->save();
+			}
 		}
 	}
 
