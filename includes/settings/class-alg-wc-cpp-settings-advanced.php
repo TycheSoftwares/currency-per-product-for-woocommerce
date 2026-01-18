@@ -69,7 +69,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Advanced' ) ) {
 			$_time = get_option( 'alg_wc_cpp_calculate_all_products_prices_cron_time', 0 );
 			return array(
 				array(
-					'title' => esc_html_e( 'Advanced Options', 'currency-per-product-for-woocommerce' ),
+					'title' => esc_html__( 'Advanced Options', 'currency-per-product-for-woocommerce' ),
 					'type'  => 'title',
 					'id'    => 'alg_wc_cpp_advanced_options',
 				),
@@ -163,3 +163,4 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Advanced' ) ) {
 }
 
 return new Alg_WC_CPP_Settings_Advanced();
+
