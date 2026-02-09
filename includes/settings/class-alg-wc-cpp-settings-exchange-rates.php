@@ -218,7 +218,7 @@ if ( ! class_exists( 'Alg_WC_CPP_Settings_Exchange_Rates' ) ) :
 							'default'           => 1,
 							'type'              => 'number',
 							'custom_attributes' => array(
-								'step' => '0.000000000001',
+								'step' => 'any',
 								'min'  => '0',
 							),
 						),
