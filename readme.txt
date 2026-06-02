@@ -2,9 +2,9 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 6.9.0
-Stable tag: 1.14.0
-Requires PHP: 7.3
+Tested up to: 7.0.0
+Stable tag: 1.15.0
+Requires PHP: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,9 @@ There is a number of scenarios that can be implemented with this plugin:
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/).
 
 == Changelog ==
+
+= 1.15.0 (02.06.2026) =
+* Fix - Exchange rate validation error when entering decimal exchange rates for a currency.
 
 = 1.14.0 (06.01.2026) =
 * Fix - When Convert to Default Currency was enabled in Behavior settings, the product price was changing and being converted again to the exchange currency when the product was edited using the Quick Edit feature.
