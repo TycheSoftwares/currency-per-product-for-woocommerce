@@ -1,4 +1,13 @@
 *** Currency per Product for WooCommerce ***
+
+2026-06-02 - version 1.15.0
+* Fix - Exchange rate validation error when entering decimal exchange rates for a currency.
+
+2026-06-01 - version 1.14.0
+* Fix - When Convert to Default Currency was enabled in Behavior settings, the product price was changing and being converted again to the exchange currency when the product was edited using the Quick Edit feature.
+* Tweak - Updated for compatibility with WordPress 6.9.
+* Tweak - Updated for compatibility with WooCommerce 10.4.3.
+
 2025-06-26 - version 1.13.0 =
 * Fix - Issue where regular price was not correctly converted when shop behaviour is set to Convert to Shop Default Currency and product has both regular and sale prices.
 * Fix - Incorrect pricing on Shop and Product pages when shop behaviour is Show in Different Currency and cart & checkout behaviour is set to Convert to Currency of First Product in Cart.
