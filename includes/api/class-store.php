@@ -54,6 +54,17 @@ class Store extends Admin_API {
 				'permission_callback' => array( __CLASS__, 'permissions' ),
 			)
 		);
+
+		register_rest_route(
+			self::$base_endpoint,
+			'store/users',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( __CLASS__, 'get_users' ),
+				'args'                => $args,
+				'permission_callback' => array( __CLASS__, 'permissions' ),
+			)
+		);
 	}
 
 	/**
@@ -68,6 +79,30 @@ class Store extends Admin_API {
 	 */
 	public static function get_tags( $request ) {
 		return self::get_terms( 'product_tag', $request );
+	}
+
+	/**
+	 * GET /cpp/v1/store/users
+	 */
+	public static function get_users( $request ) {
+		$search = $request->get_param( 'search' );
+		$limit  = $request->get_param( 'limit' );
+
+		$users = get_users( array(
+			'search'         => '*' . $search . '*',
+			'search_columns' => array( 'display_name', 'user_login', 'user_email' ),
+			'number'         => $limit,
+			'fields'         => array( 'ID', 'display_name' ),
+		) );
+
+		return rest_ensure_response(
+			array_map(
+				function ( $user ) {
+					return array( 'id' => (int) $user->ID, 'title' => $user->display_name );
+				},
+				$users
+			)
+		);
 	}
 
 	/**

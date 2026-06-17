@@ -76,7 +76,7 @@ class Currencies extends Admin_API {
 		foreach ( $data['currencies'] ?? array() as $entry ) {
 			$currencies[ $idx++ ] = array(
 				'currency'     => sanitize_text_field( $entry['currency'] ?? '' ),
-				'users'        => array_map( 'intval', (array) ( $entry['users'] ?? array() ) ),
+				'users'        => self::sanitize_token_list( $entry['users'] ?? array() ),
 				'user_roles'   => array_map( 'sanitize_text_field', (array) ( $entry['user_roles'] ?? array() ) ),
 				'product_cats' => self::sanitize_token_list( $entry['product_cats'] ?? array() ),
 				'product_tags' => self::sanitize_token_list( $entry['product_tags'] ?? array() ),

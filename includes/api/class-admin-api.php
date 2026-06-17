@@ -1,9 +1,9 @@
 <?php
 /**
- * PIF Admin API Class
- * Handles admin-related API functionalities for the PIF plugin.
+ * CPP Admin API Class
+ * Handles admin-related API functionalities for the CPP plugin.
  * 
- * @package PIF/Admin/API
+ * @package CPP/Admin/API
  * @version 1.0.0
  */
 
@@ -115,5 +115,3 @@ class Admin_API extends \WP_REST_Controller {
 	}
 
 }
-
-return new Admin_API();

@@ -362,24 +362,36 @@ function CurrenciesTab( { settings, onSaved } ) {
 												</Text>
 											</div>
 											<div className="cpp-currency-row__control">
-												<FormTokenField
-													label={''}
-													help={''}
-													value={ ( currencies[ idx ]?.users ?? [] ).map(
-														( id ) => users.find( ( u ) => Number( u.id ) === Number( id ) )?.name ?? String( id )
-													) }
-													suggestions={ users.map( ( u ) => u.name ) }
-													placeholder={ __( 'Select authors…', 'currency-per-product-for-woocommerce' ) }
-													onChange={ ( tokens ) => {
-														const ids = tokens.map( ( t ) => {
-															const user = users.find( ( u ) => u.name === t );
-															return user?.id ?? t;
-														} );
-														setValue( `currencies.${ idx }.users`, ids );
-													} }
-													__experimentalExpandOnFocus
-													__nextHasNoMarginBottom
-												/>
+												{ users.length > 0 ? (
+													<FormTokenField
+														label={''}
+														help={''}
+														value={ ( currencies[ idx ]?.users ?? [] ).map(
+															( u ) => {
+																const id = u?.value ?? u;
+																return users.find( ( s ) => Number( s.id ) === Number( id ) )?.name ?? String( id );
+															}
+														) }
+														suggestions={ users.map( ( u ) => u.name ) }
+														placeholder={ __( 'Select authors…', 'currency-per-product-for-woocommerce' ) }
+														onChange={ ( tokens ) => {
+															const selected = tokens.map( ( t ) => {
+																const user = users.find( ( u ) => u.name === t );
+																return user ? { value: user.id, label: user.name } : t;
+															} );
+															setValue( `currencies.${ idx }.users`, selected );
+														} }
+														__experimentalExpandOnFocus
+														__nextHasNoMarginBottom
+													/>
+												) : (
+													<TokenField
+														type="users"
+														value={ currencies[ idx ]?.users ?? [] }
+														onChange={ ( selected ) => setValue( `currencies.${ idx }.users`, selected ?? [] ) }
+														placeholder={ __( 'Search authors…', 'currency-per-product-for-woocommerce' ) }
+													/>
+												) }
 											</div>
 											<div className="cpp-currency-row__action" />
 										</div>

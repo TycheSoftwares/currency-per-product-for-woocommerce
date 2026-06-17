@@ -424,7 +424,7 @@ class Migration {
 		if ( ! empty( $currencies_settings['currencies'] ) ) {
 			$keys = array_keys( $currencies_settings['currencies'] );
 			sort( $keys, SORT_NUMERIC );
-			if ( isset( $keys[0] ) && $keys[0] !== 0 ) {
+			if ( isset( $keys[0] ) && (int) $keys[0] !== 0 ) {
 				$reindexed = array();
 				$idx       = 0;
 				foreach ( $currencies_settings['currencies'] as $entry ) {
@@ -440,7 +440,7 @@ class Migration {
 		if ( ! empty( $exchange_rates['rates'] ) ) {
 			$keys = array_keys( $exchange_rates['rates'] );
 			sort( $keys, SORT_NUMERIC );
-			if ( isset( $keys[0] ) && $keys[0] !== 0 ) {
+			if ( isset( $keys[0] ) && (int) $keys[0] !== 0 ) {
 				$reindexed = array();
 				$idx       = 0;
 				foreach ( $exchange_rates['rates'] as $entry ) {

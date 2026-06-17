@@ -36,7 +36,7 @@ if ( ! class_exists( 'Currency_Per_Product', false ) ) {
 }
 
 /**
- * Returns the instance of PIF.
+ * Returns the instance of CPP.
  *
  * @since  1.0
  */

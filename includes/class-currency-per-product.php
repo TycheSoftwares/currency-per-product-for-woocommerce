@@ -1,11 +1,11 @@
 <?php
 /**
- * Custom Order Numbers for WooCommerce.
+ * Currency Per Product for WooCommerce.
  *
  * Main Class.
  *
  * @author      Tyche Softwares
- * @package     CON/Main
+ * @package     CPP/Main
  * @category    Classes
  * @since       2.0
  */
@@ -75,9 +75,9 @@ final class Currency_Per_Product {
     protected static $instance = null;
 
     /**
-     * Main Custom Order Numbers Instance.
+     * Main Currency Per Product Instance.
      *
-     * Ensures only one instance of Custom Order Numbers is loaded or can be loaded.
+     * Ensures only one instance of Currency Per Product is loaded or can be loaded.
      *
      * @return Custom_Order_Numbers - Main instance.
      * @since 2.0

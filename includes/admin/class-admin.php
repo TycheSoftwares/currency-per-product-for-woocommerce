@@ -1,11 +1,11 @@
 <?php
 /**
- * Custom Order Numbers for WooCommerce.
+ * Currency Per Product for WooCommerce.
  *
  * Admin Base Class.
  *
  * @author      Tyche Softwares
- * @package     CON/Admin
+ * @package     CPP/Admin
  * @category    Classes
  * @since       2.0
  */

@@ -119,7 +119,7 @@ class Admin_Scripts extends Admin {
 
 		if ( 'shop_order' === $screen->post_type || 'shop_subscription' === $screen->post_type ) {
 			if ( isset( $_GET['page'] ) && 'wc-orders' === $_GET['page'] ) {// phpcs:ignore WordPress.Security.NonceVerification
-				$order_id = ! empty( $_GET['id'] ) ? sanitize_text_field( wp_unslash( $_GET['id'] ) ) : 0;// phpcs:ignore WordPress.Security.NonceVerification
+				$order_id = ! empty( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;// phpcs:ignore WordPress.Security.NonceVerification
 			} else {
 				$order_id = $post->ID;
 			}
@@ -176,10 +176,18 @@ class Admin_Scripts extends Admin {
 	}
 
 	/**
-	 * Returns all users as [{id, name}] for the frontend.
+	 * Returns users as [{id, name}] for the frontend.
+	 *
+	 * When the site has more than 500 users, returns an empty array so the
+	 * frontend can fall back to a live REST API search instead of receiving a
+	 * potentially huge inline dataset.
 	 */
 	private function get_users() {
-		$result = array();
+		$counts = count_users();
+		if ( $counts['total_users'] > 500 ) {
+			return array();
+		}
+
 		foreach ( get_users( array( 'fields' => array( 'ID', 'display_name' ) ) ) as $user ) {
 			$result[] = array( 'id' => (int) $user->ID, 'name' => $user->display_name );
 		}
@@ -196,7 +204,7 @@ class Admin_Scripts extends Admin {
 			'tyche',
 			plugins_url() . '/currency-per-product-for-woocommerce/assets/js/tyche.js',
 			array( 'jquery' ),
-			get_option( 'alg_wc_cpp_version' ),
+			CPP_VERSION,
 			false
 		);
 		wp_enqueue_script( 'tyche' );
