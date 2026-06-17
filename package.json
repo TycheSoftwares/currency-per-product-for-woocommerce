@@ -1,0 +1,49 @@
+{
+    "name": "currency-per-product-for-woocommerce",
+    "version": "2.0.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "wp-scripts build",
+        "check-engines": "wp-scripts check-engines",
+        "check-licenses": "wp-scripts check-licenses",
+        "format": "wp-scripts format",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "lint:md:docs": "wp-scripts lint-md-docs",
+        "lint:pkg-json": "wp-scripts lint-pkg-json",
+        "packages-update": "wp-scripts packages-update",
+        "plugin-zip": "wp-scripts plugin-zip",
+        "start": "wp-scripts start",
+        "serve": "serve",
+        "makejsstring": "node .bin/make-string.js",
+        "makepot": "wp i18n make-pot . languages/ccurrency-per-product-for-woocommerce.pot --skip-js --exclude=src,vendor,node_modules --merge=languages/js.pot",
+        "deploy": "npm-run-all build makepot copy",
+        "clean": "rm -rf dist",
+        "i18n:pot": "wp i18n make-pot . languages/currency-per-product-for-woocommerce.pot",
+        "i18n:po": "wp i18n update-po languages/currency-per-product-for-woocommerce.pot languages/currency-per-product-for-woocommerce.po",
+        "i18n": "npm run i18n:pot && npm run i18n:po",
+        "package": "node build-plugin.js",
+        "package:wc": "node build-plugin.js --variant=wc",
+        "release:non-wc": "npm run build && npm run i18n && node build-plugin.js",
+        "release:wc": "CPP_WC_BUILD=true npm run build && node build-plugin.js --variant=wc",
+        "release": "npm run clean && npm run release:non-wc && npm run release:wc",
+        "release:svn": "npm run clean && npm run build && npm run i18n && node build-plugin.js --variant=svn"
+    },
+    "dependencies": {
+        "@wordpress/components": "^28.2.0",
+        "@wordpress/compose": "^7.2.0",
+        "@wordpress/data": "^10.2.0",
+        "@wordpress/element": "^6.2.0",
+        "@wordpress/i18n": "^5.2.0",
+        "@wordpress/icons": "^10.2.0",
+        "archiver": "^7.0.1",
+        "react-hook-form": "^7.52.1",
+        "react-router-dom": "^6.23.1",
+        "react-select": "^5.10.2"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^28.2.0"
+    },
+    "author": "Tyche Softwares",
+    "license": "GPL-3.0"
+}
