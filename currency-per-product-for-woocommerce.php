@@ -40,7 +40,7 @@ if ( ! class_exists( 'Currency_Per_Product', false ) ) {
  *
  * @since  1.0
  */
-function CPP() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+function CPP_Lite() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 	return Currency_Per_Product::instance();
 }
 

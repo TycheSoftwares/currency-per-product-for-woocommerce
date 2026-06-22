@@ -123,7 +123,7 @@ final class Currency_Per_Product {
 			},
 			1
 		);
-		add_action( 'plugins_loaded', __NAMESPACE__ . '\\CPP' );
+		add_action( 'plugins_loaded', [ __CLASS__, 'instance' ] );
 	}
 
     /**
@@ -352,7 +352,7 @@ final class Currency_Per_Product {
 		$custom_links   = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=currency-per-product-for-woocommerce' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 
-		$custom_links[] = '<a href="tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=cppupgradetopro&utm_medium=unlockall&utm_campaign=CurrencePerProductLite">' . __( 'Unlock All', 'currency-per-product-for-woocommerce' ) . '</a>';
+		$custom_links[] = '<a href="https://www.tychesoftwares.com/products/woocommerce-currency-per-product-plugin/?utm_source=cppupgradetopro&utm_medium=unlockall&utm_campaign=CurrencyPerProductLite">' . __( 'Unlock All', 'currency-per-product-for-woocommerce' ) . '</a>';
 
 		return array_merge( $custom_links, $links );
 	}
