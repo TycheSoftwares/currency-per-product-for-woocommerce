@@ -32,14 +32,14 @@ class Files {
 	 */
 	public static function include_files() {
 
-        CPP()::include_file( 'api/class-admin-api.php' );
-        CPP()::include_file( 'api/class-general.php' );
-        CPP()::include_file( 'api/class-behaviour.php' );
-        CPP()::include_file( 'api/class-currencies.php' );
-        CPP()::include_file( 'api/class-exchange-rates.php' );
-        CPP()::include_file( 'api/class-advanced.php' );
-        CPP()::include_file( 'api/class-store.php' );
-        CPP()::include_file( 'api/class-tools.php' );
+        CPP_Lite()::include_file( 'api/class-admin-api.php' );
+        CPP_Lite()::include_file( 'api/class-general.php' );
+        CPP_Lite()::include_file( 'api/class-behaviour.php' );
+        CPP_Lite()::include_file( 'api/class-currencies.php' );
+        CPP_Lite()::include_file( 'api/class-exchange-rates.php' );
+        CPP_Lite()::include_file( 'api/class-advanced.php' );
+        CPP_Lite()::include_file( 'api/class-store.php' );
+        CPP_Lite()::include_file( 'api/class-tools.php' );
 
         $tyche_files = array(
             'class-tyche-cpp-tracking.php',
@@ -48,28 +48,28 @@ class Files {
 
         foreach ( $tyche_files as $tyche_file ) {
             if ( file_exists( CPP_PLUGIN_DIR_PATH . '/includes/' . $tyche_file ) ) {
-               CPP()::include_file( $tyche_file );
+				CPP_Lite()::include_file( $tyche_file );
             }
         }
 
-		CPP()::include_file( 'functions/class-functions.php' );
-		CPP()::include_file( 'functions/class-exchange-rates-functions.php' );
+		CPP_Lite()::include_file( 'functions/class-functions.php' );
+		CPP_Lite()::include_file( 'functions/class-exchange-rates-functions.php' );
 
-		CPP()::include_file( 'core/class-crons.php' );
+		CPP_Lite()::include_file( 'core/class-crons.php' );
 
-		CPP()::include_file( 'admin/class-admin.php' );
-		CPP()::include_file( 'admin/class-product.php' );
+		CPP_Lite()::include_file( 'admin/class-admin.php' );
+		CPP_Lite()::include_file( 'admin/class-product.php' );
 		
 		// Scripts.
-		CPP()::include_file( 'admin/class-admin-scripts.php' );
+		CPP_Lite()::include_file( 'admin/class-admin-scripts.php' );
 		new Admin_Scripts();
 
-		CPP()::include_file( 'core/class-migration.php' );
+		CPP_Lite()::include_file( 'core/class-migration.php' );
 
 		//Frontend
-		CPP()::include_file( 'frontend/class-frontend.php' );
+		CPP_Lite()::include_file( 'frontend/class-frontend.php' );
 
-		CPP()::include_file( 'admin/class-currency-reports.php' );
+		CPP_Lite()::include_file( 'admin/class-currency-reports.php' );
 	}
 
 	/**

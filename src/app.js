@@ -124,7 +124,7 @@ function App() {
                 </HStack>
                 <HStack justify="center">
                     <Text>If this plugin helped you,</Text>
-                    <ExternalLink href="https://www.tychesoftwares.com/submit-review/" className="bogo-link">
+                    <ExternalLink href="https://wordpress.org/support/plugin/currency-per-product-for-woocommerce/reviews" className="bogo-link">
                     please rate it
                     </ExternalLink>
                     <Text style={{ fontSize: "17px", color: "#FFBA00" }}>★★★★★</Text>
