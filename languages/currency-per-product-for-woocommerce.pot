@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-17T08:10:53+00:00\n"
+"POT-Creation-Date: 2026-06-25T10:21:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: currency-per-product-for-woocommerce\n"
@@ -1067,52 +1067,52 @@ msgstr ""
 
 #: build/admin.js:1
 #: src/screens/faqs.js:22
-msgid "Will existing prices be converted automatically when I set an exchange rate?"
-msgstr ""
-
-#: build/admin.js:1
-#: src/screens/faqs.js:23
-msgid "Yes. When a product does not have an explicit price in the selected currency, the plugin multiplies the base price by the configured exchange rate. Manual prices set on each product always take precedence over automatic conversion."
-msgstr ""
-
-#: build/admin.js:1
-#: src/screens/faqs.js:26
-msgid "How do I update exchange rates automatically?"
-msgstr ""
-
-#: build/admin.js:1
-#: src/screens/faqs.js:27
-msgid "Go to Configuration → Exchange Rates and set \"Exchange rates updates\" to \"Update rates automatically\". Then choose an update server and a frequency (hourly, twice daily, or daily). The plugin will fetch fresh rates via WordPress Cron."
-msgstr ""
-
-#: build/admin.js:1
-#: src/screens/faqs.js:30
 msgid "Can customers add products in different currencies to the same cart?"
 msgstr ""
 
 #: build/admin.js:1
-#: src/screens/faqs.js:31
+#: src/screens/faqs.js:23
 msgid "This depends on the \"Cart and checkout behaviour\" setting. You can allow only products sharing the same currency, convert everything to the shop default currency, or convert to the currency of the last (or first) product added. Configure this under Configuration → Behaviour."
 msgstr ""
 
 #: build/admin.js:1
+#: src/screens/faqs.js:26
+msgid "I enabled \"Show Original Price in Shop,\" but I do not see it on the frontend. Why?"
+msgstr ""
+
+#: build/admin.js:1
+#: src/screens/faqs.js:27
+msgid "The Show Original Price in Shop setting is ignored when prices are displayed in their assigned currencies. Review your Shop Behaviour setting to verify how prices are configured to appear."
+msgstr ""
+
+#: build/admin.js:1
+#: src/screens/faqs.js:30
+msgid "Why are my converted prices different from live exchange rates?"
+msgstr ""
+
+#: build/admin.js:1
+#: src/screens/faqs.js:31
+msgid "The plugin uses the exchange rates configured in the Exchange Rates settings. In the Lite version, these rates are entered manually and do not update automatically. As a result, displayed prices may differ from current market exchange rates if the configured values are outdated. Automatic exchange rate updates are available in the Pro version."
+msgstr ""
+
+#: build/admin.js:1
 #: src/screens/faqs.js:34
-msgid "What does the \"Convert prices based on customer's location\" option do?"
+msgid "When should I use the \"Recalculate Prices\" tool?"
 msgstr ""
 
 #: build/admin.js:1
 #: src/screens/faqs.js:35
-msgid "When this option is selected, the plugin detects the visitor's IP address or geolocation and automatically applies the matching currency from your configured list. Enable \"Enable by Location\" under Behaviour → Additional Settings to activate this feature."
+msgid "Use Recalculate Prices after updating exchange rates when Save Product Prices is enabled. This regenerates the saved converted prices for all products."
 msgstr ""
 
 #: build/admin.js:1
 #: src/screens/faqs.js:38
-msgid "My license shows inactive after entering the key. What should I check?"
+msgid "I changed a currency symbol, but the old symbol still appears in the mini cart. What should I do?"
 msgstr ""
 
 #: build/admin.js:1
 #: src/screens/faqs.js:39
-msgid "Verify that the key contains no extra spaces and has not exceeded its activation limit. Also confirm that your server allows outbound HTTP requests for license validation. If the issue persists, contact Tyche Softwares support with your purchase order number and site URL."
+msgid "Enable Mini Cart Currency Fix to recalculate cart totals on each page load and help resolve currency display issues in the mini cart."
 msgstr ""
 
 #: build/admin.js:1
