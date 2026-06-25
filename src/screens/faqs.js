@@ -19,24 +19,24 @@ const faqs = [
 		answer: __( 'Open the product edit page in WooCommerce. In the Product Data section you will find a Currency per Product panel where you can choose a currency and enter prices. Save the product to apply the change.', 'currency-per-product-for-woocommerce' ),
 	},
 	{
-		question: __( 'Will existing prices be converted automatically when I set an exchange rate?', 'currency-per-product-for-woocommerce' ),
-		answer: __( 'Yes. When a product does not have an explicit price in the selected currency, the plugin multiplies the base price by the configured exchange rate. Manual prices set on each product always take precedence over automatic conversion.', 'currency-per-product-for-woocommerce' ),
-	},
-	{
-		question: __( 'How do I update exchange rates automatically?', 'currency-per-product-for-woocommerce' ),
-		answer: __( 'Go to Configuration → Exchange Rates and set "Exchange rates updates" to "Update rates automatically". Then choose an update server and a frequency (hourly, twice daily, or daily). The plugin will fetch fresh rates via WordPress Cron.', 'currency-per-product-for-woocommerce' ),
-	},
-	{
 		question: __( 'Can customers add products in different currencies to the same cart?', 'currency-per-product-for-woocommerce' ),
 		answer: __( 'This depends on the "Cart and checkout behaviour" setting. You can allow only products sharing the same currency, convert everything to the shop default currency, or convert to the currency of the last (or first) product added. Configure this under Configuration → Behaviour.', 'currency-per-product-for-woocommerce' ),
 	},
 	{
-		question: __( 'What does the "Convert prices based on customer\'s location" option do?', 'currency-per-product-for-woocommerce' ),
-		answer: __( 'When this option is selected, the plugin detects the visitor\'s IP address or geolocation and automatically applies the matching currency from your configured list. Enable "Enable by Location" under Behaviour → Additional Settings to activate this feature.', 'currency-per-product-for-woocommerce' ),
+		question: __( 'I enabled "Show Original Price in Shop," but I do not see it on the frontend. Why?', 'currency-per-product-for-woocommerce' ),
+		answer: __( 'The Show Original Price in Shop setting is ignored when prices are displayed in their assigned currencies. Review your Shop Behaviour setting to verify how prices are configured to appear.', 'currency-per-product-for-woocommerce' ),
 	},
 	{
-		question: __( 'My license shows inactive after entering the key. What should I check?', 'currency-per-product-for-woocommerce' ),
-		answer: __( 'Verify that the key contains no extra spaces and has not exceeded its activation limit. Also confirm that your server allows outbound HTTP requests for license validation. If the issue persists, contact Tyche Softwares support with your purchase order number and site URL.', 'currency-per-product-for-woocommerce' ),
+		question: __( 'Why are my converted prices different from live exchange rates?', 'currency-per-product-for-woocommerce' ),
+		answer: __( 'The plugin uses the exchange rates configured in the Exchange Rates settings. In the Lite version, these rates are entered manually and do not update automatically. As a result, displayed prices may differ from current market exchange rates if the configured values are outdated. Automatic exchange rate updates are available in the Pro version.', 'currency-per-product-for-woocommerce' ),
+	},
+	{
+		question: __( 'When should I use the "Recalculate Prices" tool?', 'currency-per-product-for-woocommerce' ),
+		answer: __( 'Use Recalculate Prices after updating exchange rates when Save Product Prices is enabled. This regenerates the saved converted prices for all products.', 'currency-per-product-for-woocommerce' ),
+	},
+	{
+		question: __( 'I changed a currency symbol, but the old symbol still appears in the mini cart. What should I do?', 'currency-per-product-for-woocommerce' ),
+		answer: __( 'Enable Mini Cart Currency Fix to recalculate cart totals on each page load and help resolve currency display issues in the mini cart.', 'currency-per-product-for-woocommerce' ),
 	},
 ];
 
