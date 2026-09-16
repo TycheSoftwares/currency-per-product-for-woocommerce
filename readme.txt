@@ -2,8 +2,8 @@
 Contributors: tychesoftwares
 Tags: woocommerce, currency per product, multicurrency, product currency
 Requires at least: 4.4
-Tested up to: 7.0.0
-Stable tag: 2.0.0
+Tested up to: 7.1
+Stable tag: 2.0.1
 Requires PHP: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,9 @@ This plugin communicates with our tracking server to send usage data **only** if
 6. Product edit page — assign a currency to an individual product.
 
 == Changelog ==
+
+= 2.0.1 (16.09.2026) =
+* Fix - Product currency is not applied when manually creating or editing WooCommerce orders.
 
 = 2.0.0 (25.06.2026) =
 * New - React-based admin interface for General, Behaviour, Currencises & exchange Rates.
