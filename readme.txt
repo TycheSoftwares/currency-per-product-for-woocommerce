@@ -12,83 +12,119 @@ Set WooCommerce product prices in multiple currencies with flexible cart and che
 
 == Description ==
 
-> ###🚀&nbsp;&nbsp;New Launch: Flexi BOGO for WooCommerce
->
-> The only BOGO plugin with a revenue tracking feature. **Now, at an attractive introductory price**. [Check out our new plugin here](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=pluginpagetop&utm_campaign=CurrencyProductLite).
+[**Currency Per Product for WooCommerce**](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite) lets you assign a different currency to individual WooCommerce products while controlling how prices are displayed across your store, cart, and checkout. The plugin supports all WooCommerce product types and allows you to configure manual exchange rates, customize currency behavior, and generate currency-based sales reports.
 
-**[Currency per Product for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite/)** plugin lets you set and display prices for WooCommerce products in different currencies.
+Whether you sell internationally, manage products from multiple suppliers, or need different product currencies within the same WooCommerce store, the plugin helps you present prices in the right currency while maintaining a consistent shopping experience.
 
-There is a number of scenarios that can be implemented with this plugin:
+= Key Features =
 
-* Set WooCommerce product prices in different currencies and display it in shop in **different currencies**.
-* Set WooCommerce product prices in different currencies, but display it in shop in **one currency, converted with the exchange rates** (i.e. "multicurrency product base price").
-* Set WooCommerce product prices in different currencies, display it in shop in **different currencies**, but convert it to **one currency in cart and checkout**.
+### Sell Products in Different Currencies
+Set a different currency for WooCommerce products instead of using a single store-wide currency. The plugin works with all WooCommerce product types, making it suitable for stores selling products sourced or priced in different currencies.
 
-= Shop Behaviour Options =
+### Display Prices in the Currency You Choose
+Choose how currencies behave across your WooCommerce store, including the Shop, Cart, and Checkout pages. You can display products in their assigned currency or convert prices to your store's default currency depending on your preferred shopping experience.
 
+### Set Your Own Exchange Rates
+Define manual exchange rates for your supported currencies, giving you complete control over how product prices are converted. The Lite version supports one additional currency with manually configured exchange rates.
+
+### Track Sales by Currency
+Track sales based on the currency used for products, helping you better understand revenue across different markets.
+
+### Let Customers Filter Products by Price
+Converted prices work with WooCommerce's built-in **Sort by Price** option and **Filter Products by Price** widget, allowing customers to browse products using converted prices.
+
+= Detailed Settings =
+
+**Shop Behaviour Options**
 * Show prices in **different currencies** (and set cart and checkout behaviour separately).
 * Convert to **shop default currency** (including cart and checkout).
 * Add **original (i.e. not converted) price** display to shop pages.
 
-= Cart and Checkout Behaviour Options =
-
+**Cart and Checkout Behaviour Options**
 * **Convert** to **shop default** currency.
 * **Leave** product currency (allow only **one product** to be added to cart).
 * **Leave** product currency (allow only **same currency products** to be added to cart).
 * **Convert** to currency of **last product** in cart.
 * **Convert** to currency of **first product** in cart.
 
-= Currencies Options =
-
-* Add **two** currencies in free version and **unlimited** number of currencies in [Pro version](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite/).
+**Currencies Options**
+* Add **two** currencies in free version and **unlimited** number of currencies in [Pro version](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite).
 * Optional currency per **product authors**.
 * Optional currency per **product authors user roles**.
 * Optional currency per **product categories**.
 * Optional currency per **product tags**.
 
-= Currency Exchange Rates Options =
+**Currency Exchange Rates Options**
+* **Manual** currency exchange rates in free version and **automatic** currency exchange rates in [Pro version](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite) (including customizable update **rate** and currency exchange rates **server**).
 
-* **Manual** currency exchange rates in free version and **automatic** currency exchange rates in [Pro version](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite/) (including customizable update **rate** and currency exchange rates **server**).
-
-= More Options =
-
+**More Options**
 * Add currency selection to admin bar in WooCommerce **admin reports**.
 * Enable use of converted prices in WooCommerce **"Sort by price" sorting**.
 * Enable use of converted prices in WooCommerce **"Filter Products by Price" widget**.
 
+= Common Use Cases =
+
+Currency per Product for WooCommerce is ideal for stores that:
+* Sell products sourced from different countries
+* Price products in different currencies
+* Import products from international suppliers
+* Manage catalogs with region-specific pricing
+* Need manual control over exchange rates
+* Want consistent currency handling across the shop, cart, and checkout
+
+= Documentation & Support =
+
+* Visit the [WordPress support forums](https://wordpress.org/support/plugin/currency-per-product-for-woocommerce/)
+* Check the [documentation](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/) for common answers
+* Try the [live demo](https://app.instawp.io/launch?d=v1&t=currency-per-product-for-woocommerce) to see how the plugin works on the storefront.
+
+If you find the plugin useful, a **⭐ 5-star rating** is always appreciated — it helps other store owners discover the plugin.
+
+= Looking for More Advanced Features? =
+
+Upgrade to [Currency per Product for WooCommerce Pro](https://www.tychesoftwares.com/products/woocommerce-currency-per-product-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite) to add unlimited currencies, automatic exchange rate updates, frontend currency switching, customer location-based currency detection, additional exchange fee options, and other advanced multicurrency capabilities.
+
+See the complete Lite vs Pro comparison: [https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-currency-per-product-for-woocommerce-plugin/](https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-currency-per-product-for-woocommerce-plugin/)
+
+= About Tyche Softwares =
+
+Tyche Softwares has been building WooCommerce plugins since 2009, helping merchants manage pricing, currencies, checkout, delivery scheduling, product customization, and other essential ecommerce workflows.
+
+= Explore More WooCommerce Plugins =
+
+Tyche Softwares also develops plugins for abandoned cart recovery, order delivery scheduling, bookings, invoices and packing slips, custom order numbers, custom order statuses, product input fields, BOGO offers, payment gateway fees, call for price, role-based pricing, and other WooCommerce enhancements.
+
 **Some of our Pro plugins:**
 
-1. **[Flexi BOGO for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Flexi BOGO for WooCommerce")**
+1. **[Flexi BOGO for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=FlexiBOGO "Flexi BOGO for WooCommerce")**
 
-1. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-abandoned-cart-pro/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Abandoned Cart Pro for WooCommerce")**
+2. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-abandoned-cart-pro/?utm_source=wprepo&utm_medium=link&utm_campaign=AbandonedCartLite "Abandoned Cart Pro for WooCommerce")**
 
-2. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-booking-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Booking & Appointment Plugin for WooCommerce")**
+3. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-booking-and-appointment-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=BookingAppointmentLite "Booking & Appointment Plugin for WooCommerce")**
 
-3. **[Order Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/order-delivery-date-for-woocommerce-pro-21/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Order Delivery Date Pro for WooCommerce")**
+4. **[Order Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-order-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=OrderDeliveryDateLite "Order Delivery Date Pro for WooCommerce")**
 
-4. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/product-delivery-date-pro-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Product Delivery Date Pro for WooCommerce")**
+5. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-product-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=ProductDeliveryDateLite "Product Delivery Date Pro for WooCommerce")**
 
-5. **[Deposits For WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/deposits-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Deposits For WooCommerce")**
+6. **[Deposits For WooCommerce](https://www.tychesoftwares.com/products/woocommerce-deposit-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=DepositsLite "Deposits For WooCommerce")**
 
-6. **[Payment Gateway Based Fees and Discounts for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Payment Gateway Based Fees and Discounts for WooCommerce - Pro")**
+7. **[Payment Gateway Based Fees and Discounts for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=wprepo&utm_medium=prolink2&utm_campaign=WCPGBasedFees "Payment Gateway Based Fees and Discounts for WooCommerce - Pro")**
 
-7. **[Custom Order Status for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/custom-order-status-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Custom Order Status for WooCommerce - Pro")**
+8. **[Custom Order Status for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-custom-order-status-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=CustomStatus "Custom Order Status for WooCommerce - Pro")**
 
-8. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/custom-order-numbers-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Custom Order Numbers for WooCommerce - Pro")**
+9. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-custom-order-numbers-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=CustomNumbers "Custom Order Numbers for WooCommerce - Pro")**
 
-9. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/product-input-fields-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Product Input Fields for WooCommerce - Pro")**
+10. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-product-input-fields-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=ProductInputFields "Product Input Fields for WooCommerce - Pro")**
 
-10. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Call for Price for WooCommerce - Pro")**
+11. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CallForPrice "Call for Price for WooCommerce - Pro")**
 
-11. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/price-user-role-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite "Price based on User Role for WooCommerce - Pro")**
+12. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-price-user-role-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=ProductPricesByUserRoles "Price based on User Role for WooCommerce - Pro")**
 
 **Some of our other free plugins:**
 
 1. **[Abandoned Cart for WooCommerce](https://wordpress.org/plugins/woocommerce-abandoned-cart/ "Abandoned Cart for WooCommerce")**
 
 2. **[Order Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/order-delivery-date-for-woocommerce/ "Order Delivery Date for WooCommerce - Lite")**
-
-3. **[Print Invoice & Delivery Notes for WooCommerce](https://wordpress.org/plugins/woocommerce-delivery-notes/ "Print Invoice & Delivery Notes for WooCommerce")**
 
 3. **[Product Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/product-delivery-date-for-woocommerce-lite/ "Product Delivery Date for WooCommerce")**
 
@@ -106,7 +142,7 @@ There is a number of scenarios that can be implemented with this plugin:
 
 = Feedback =
 * We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
-* Please visit the [plugin page](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=CurrencyProductLite/).
+* Please visit the [plugin page](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite).
 
 == Installation ==
 
@@ -114,8 +150,43 @@ There is a number of scenarios that can be implemented with this plugin:
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Start by visiting plugin settings at "WooCommerce > Settings > Currency per Product".
 
+== Frequently Asked Questions ==
+
+= Can I assign different currencies to different WooCommerce products? =
+
+Yes. The plugin allows you to assign different currencies to individual WooCommerce products while keeping your store easy to manage.
+
+= How many currencies does the Lite version support? =
+
+The Lite version supports your store's default currency plus **one additional currency**. Upgrade to the Pro version to add unlimited currencies.
+
+= Can I configure exchange rates manually? =
+
+Yes. The Lite version lets you define manual exchange rates for supported currencies.
+
+= Does the plugin work with all WooCommerce product types? =
+
+Yes. Currency per Product for WooCommerce supports all WooCommerce product types.
+
+= Can customers sort and filter products by converted prices? =
+
+Yes. The plugin supports WooCommerce's **Sort by Price** option and the **Filter Products by Price** widget using converted prices.
+
+= Does the plugin support automatic exchange rate updates? =
+
+Automatic exchange rate updates are available in the Pro version. The Lite version uses manually configured exchange rates.
+
 == External Services ==
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/woocommerce-currency-per-product/currency-usage-tracking/).
+
+== Screenshots ==
+
+1. Currency Mapping Rules — assign currencies by product category, tag, author, author's user role, or payment gateway (Pro).
+2. Shop, Cart, and Checkout Behaviour settings — control how prices are displayed and converted across your store.
+3. General settings — enable Currency per Product for WooCommerce.
+4. Shop page displaying product prices in multiple currencies, with the original price shown alongside the converted price.
+5. Exchange Rates settings — manually enter exchange rates for supported currencies.
+6. Product edit page — assign a currency to an individual product.
 
 == Changelog ==
 
