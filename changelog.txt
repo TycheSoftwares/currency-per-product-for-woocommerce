@@ -1,5 +1,8 @@
 *** Currency per Product for WooCommerce ***
 
+2026-09-16 - version 2.0.1
+* Fix - Product currency is not applied when manually creating or editing WooCommerce orders.
+
 2026-06-25 - version 2.0.0
 * New - React-based admin interface for General, Behaviour, Currencises & exchange Rates.
 * Dev - Introduced a REST API layer (cpp/v1) for all admin data operations, with per-endpoint capability checks.
